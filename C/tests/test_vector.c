@@ -340,7 +340,136 @@ void test_add(){
     test_add_associativity();
 }
 
+//Basic dot product test
+void test_dot_basic(){
+    vector *v1 = create_v(3);
+    vector *v2 = create_v(3);
 
+    setVal_v(v1, 0, 1.0);
+    setVal_v(v1, 1, 2.0);
+    setVal_v(v1, 2, 3.0);
+
+    setVal_v(v2, 0, 4.0);
+    setVal_v(v2, 1, 5.0);
+    setVal_v(v2, 2, 6.0);
+
+    double result = dot_v(v1,v2);
+    if(result != 32.0){
+        printf("Dot product result incorrect");
+        exit(1);
+    } else{
+        printf("Dot product calculated successfully\n");
+    }
+
+    free_v(v1);
+    free_v(v2);
+}
+
+//Dimension mismatch test for dot product
+void test_dot_dimension_mismatch(){
+    vector *v1 = create_v(3);
+    vector *v2 = create_v(4);
+
+    setVal_v(v1, 0, 1.0);
+    setVal_v(v1, 1, 2.0);
+    setVal_v(v1, 2, 3.0);
+
+    setVal_v(v2, 0, 4.0);
+    setVal_v(v2, 1, 5.0);
+    setVal_v(v2, 2, 6.0);
+    setVal_v(v2, 3, 7.0);
+
+    double result = dot_v(v1,v2);
+    if(result != -1){
+        printf("Dot product should have failed due to dimension mismatch");
+        exit(1);
+    } else{
+        printf("Dot product failed as expected due to dimension mismatch\n");
+    }
+
+    free_v(v1);
+    free_v(v2);
+}
+
+//Dot product with 0 vector test
+void test_dot_zero(){
+    vector *v1 = create_v(3);
+    vector *v2 = zeros(3);
+
+    setVal_v(v1, 0, 1.0);
+    setVal_v(v1, 1, 2.0);
+    setVal_v(v1, 2, 3.0);
+
+    double result = dot_v(v1,v2);
+    if(result != 0.0){
+        printf("Dot product with zero vector should be 0");
+        exit(1);
+    } else{
+        printf("Dot product with zero vector calculated successfully\n");
+    }
+
+    free_v(v1);
+    free_v(v2);
+}
+
+//Dot with 1 vector test
+void test_dot_ones(){
+    vector *v1 = create_v(3);
+    vector *v2 = ones(3);
+
+    setVal_v(v1, 0, 1.0);
+    setVal_v(v1, 1, 2.0);
+    setVal_v(v1, 2, 3.0);
+
+    double result = dot_v(v1,v2);
+    if(result != 6.0){
+        printf("Dot product with ones vector should be sum of elements");
+        exit(1);
+    } else{
+        printf("Dot product with ones vector calculated successfully\n");
+    }
+
+    free_v(v1);
+    free_v(v2);
+}
+
+//Dot commutativity test
+void test_dot_commutativity(){
+    vector *v1 = create_v(3);
+    vector *v2 = create_v(3);
+
+    setVal_v(v1, 0, 1.0);
+    setVal_v(v1, 1, 2.0);
+    setVal_v(v1, 2, 3.0);
+
+    setVal_v(v2, 0, 4.0);
+    setVal_v(v2, 1, 5.0);
+    setVal_v(v2, 2, 6.0);
+
+    double result1 = dot_v(v1,v2);
+    double result2 = dot_v(v2,v1);
+
+    if(result1 != result2){
+        printf("Dot product is not commutative");
+        exit(1);
+    } else{
+        printf("Dot product is commutative\n");
+    }
+
+    free_v(v1);
+    free_v(v2);
+}
+
+//Comprehensive dot product test
+void test_dot(){
+    test_dot_basic();
+    test_dot_dimension_mismatch();
+    test_dot_zero();
+    test_dot_ones();
+    test_dot_commutativity();
+}
+
+//Main function to run all tests
 int main(){
     test_create();
     test_free();
@@ -348,6 +477,7 @@ int main(){
     test_zeros();
     test_ones();
     test_add();
+    test_dot();
 
     printf("All tests passed successfully\n");
     return 0;
