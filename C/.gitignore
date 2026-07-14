@@ -1,0 +1,18 @@
+# Compiled binaries
+a.exe
+*.out
+*.o
+
+# Build folders
+build/
+
+# Doxygen output
+docs/html/
+docs/latex/
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
