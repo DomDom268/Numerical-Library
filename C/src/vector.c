@@ -29,13 +29,15 @@ void print_v(vector *v){
     printf("\n");
 }
 
-void free_v(vector *v){
-    if(!v) return;
-    free(v->data);
-    free(v);
+void free_v(vector **v){
+    if(v == NULL || *v ==NULL){
+        return;
+    }
 
-    v->data = NULL;
-    v->rows = 0;
+    free((*v)->data);
+    free(*v);
+    *v = NULL;
+    
 }
 
 int setVal_v(vector *v, int row, double val){
@@ -170,7 +172,7 @@ double norm_distance(vector *v1, vector *v2){
     if(!diff) return -1;
 
     double norm_dist = euclidean_norm(diff);
-    free_v(diff);
+    free_v(&diff);
 
     return norm_dist;
 }

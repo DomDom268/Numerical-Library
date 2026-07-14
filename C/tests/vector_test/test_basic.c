@@ -1,11 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define UNITY_INCLUDE_DOUBLE
 #include "vector.h"
 #include "unity.h"
 
 
-void setup() {}
-void tearDown() {}
+void setUp(void)
+{
+
+}
+
+void tearDown(void) 
+{
+
+}
 
 /*Basic Create Test
 *Ensuring that the create function initializes the vector correctly 
@@ -15,7 +23,7 @@ void test_create_basic(){
     vector *v = create_v(4);
     TEST_ASSERT_NOT_NULL(v);
     TEST_ASSERT_EQUAL_INT(4, v->rows);
-    free_v(v);
+    free_v(&v);
 }
 
 /*Free Test
@@ -23,9 +31,10 @@ void test_create_basic(){
 */
 void test_free(){
     vector *v = create_v(4);
-    free_v(v);
-    TEST_ASSERT_NULL(v->data);
-    TEST_ASSERT_EQUAL_INT(0, v->rows);
+    TEST_ASSERT_NOT_NULL(v);
+    
+    free_v(&v);
+    TEST_ASSERT_NULL(v);
 }
 
 /*Set Value and Get Value Test
@@ -42,7 +51,7 @@ void test_setVal(){
     getVal_v(v, 2, &val);
     TEST_ASSERT_EQUAL_DOUBLE(5.0, val);
 
-    free_v(v);
+    free_v(&v);
 }
 
 
@@ -54,7 +63,7 @@ void test_zeros(){
     for(int i=0;i<v->rows;i++){
         TEST_ASSERT_EQUAL_DOUBLE(0.0, v->data[i]);
     }
-    free_v(v);
+    free_v(&v);
 }
 
 /*Ones Test
@@ -65,7 +74,7 @@ void test_ones(){
    for(int i=0;i<v->rows;i++){
     TEST_ASSERT_EQUAL_DOUBLE(1.0,v->data[i]);
    }
-    free_v(v);
+    free_v(&v);
 }
 
 /*Addition Test
@@ -92,9 +101,9 @@ void test_add_basic(){
     TEST_ASSERT_DOUBLE_WITHIN(1e-6,7.0,v3->data[1]);
     TEST_ASSERT_DOUBLE_WITHIN(1e-6,9.0,v3->data[2]);
 
-    free_v(v1);
-    free_v(v2);
-    free_v(v3);
+    free_v(&v1);
+    free_v(&v2);
+    free_v(&v3);
     
 }
 
@@ -121,9 +130,9 @@ void test_subtract_basic(){
     TEST_ASSERT_DOUBLE_WITHIN(1e-6,3.0,v3->data[1]);
     TEST_ASSERT_DOUBLE_WITHIN(1e-6,3.0,v3->data[2]);
 
-    free_v(v1);
-    free_v(v2);
-    free_v(v3);
+    free_v(&v1);
+    free_v(&v2);
+    free_v(&v3);
     
 }
 
@@ -148,8 +157,8 @@ void test_dot_basic() {
     TEST_ASSERT_NOT_EQUAL(-1,result);
     TEST_ASSERT_DOUBLE_WITHIN(1e-6,32.0,result);
 
-    free_v(v1);
-    free_v(v2);
+    free_v(&v1);
+    free_v(&v2);
 }
 
 /*Vector Scaling Test
@@ -174,8 +183,8 @@ void test_scale_basic(){
     TEST_ASSERT_DOUBLE_WITHIN(1e-6,4,v3->data[1]);
     TEST_ASSERT_DOUBLE_WITHIN(1e-6,6,v3->data[2]);
 
-    free_v(v1);
-    free_v(v3);
+    free_v(&v1);
+    free_v(&v3);
 
 }
 
@@ -200,8 +209,8 @@ void test_euclidean_distance_basic(){
     TEST_ASSERT_NOT_EQUAL(-1,result);
     TEST_ASSERT_DOUBLE_WITHIN(1e-6,5.20,result);
 
-    free_v(v1);
-    free_v(v2);
+    free_v(&v1);
+    free_v(&v2);
 
 }
 
@@ -224,7 +233,7 @@ void test_euclidean_norm_basic(){
     TEST_ASSERT_NOT_EQUAL(-1,result);
     TEST_ASSERT_DOUBLE_WITHIN(1e-6,14.0,result);
 
-    free_v(v1);
+    free_v(&v1);
 }
 
 /*Basic Manhattan Norm Test
@@ -245,7 +254,7 @@ void test_manhattan_norm(){
     TEST_ASSERT_NOT_EQUAL(-1,result);
     TEST_ASSERT_DOUBLE_WITHIN(1e-6,6.0,result);
 
-    free_v(v1);
+    free_v(&v1);
 }
 
 /*Basic Distance/Norm Test
@@ -266,9 +275,27 @@ void test_normm_distance_basic(){
     TEST_ASSERT_NOT_EQUAL(-1,result);
     TEST_ASSERT_DOUBLE_WITHIN(1e-6,5.20,result);
 
-    free_v(v1);
-    free_v(v2);
+    free_v(&v1);
+    free_v(&v2);
 
+}
 
+int main(void){
+    UNITY_BEGIN();
 
+    RUN_TEST(test_create_basic);
+    RUN_TEST(test_free);
+    RUN_TEST(test_setVal);
+    RUN_TEST(test_zeros);
+    RUN_TEST(test_ones);
+    RUN_TEST(test_add_basic);
+    RUN_TEST(test_subtract_basic);
+    RUN_TEST(test_dot_basic);
+    RUN_TEST(test_scale_basic);
+    RUN_TEST(test_euclidean_distance_basic);
+    RUN_TEST(test_euclidean_norm_basic);
+    RUN_TEST(test_manhattan_norm);
+    RUN_TEST(test_normm_distance_basic);
+
+    return UNITY_END();
 }

@@ -8,7 +8,7 @@ typedef struct {
 
 vector *create_v(int rows);
 void print_v(vector *v);
-void free_v(vector *v);
+void free_v(vector **v);
 int setVal_v(vector *v, int row, double val);
 int getVal_v(vector *v, int row, double *out);
 vector *add_v(vector *a, vector *b);
