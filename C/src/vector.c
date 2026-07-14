@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include "vector.h"
 
-typedef struct {
-    int rows;
-    double *data; //pointer to a 1D array
-} vector;
+// typedef struct {
+//     int rows;
+//     double *data; //pointer to a 1D array
+// } vector;
 
 vector *create_v(int rows){
     if(rows<=0){
@@ -41,7 +42,7 @@ void free_v(vector **v){
 }
 
 int setVal_v(vector *v, int row, double val){
-    if(v->rows < row || row < 0){
+    if(v->rows <= row || row < 0){
         printf("Invalid index");
         return 0;    
     }
@@ -52,7 +53,7 @@ int setVal_v(vector *v, int row, double val){
 }
 
 int getVal_v(vector *v, int row, double *out){
-    if(v->rows < row || row < 0 || !out){
+    if(v->rows <= row || row < 0 || !out){
         printf("Invalid index or output pointer");
         return 0;    
     }

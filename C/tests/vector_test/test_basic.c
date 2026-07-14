@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #define UNITY_INCLUDE_DOUBLE
 #include "vector.h"
 #include "unity.h"
@@ -207,7 +208,7 @@ void test_euclidean_distance_basic(){
     double result = euclidean_distance(v1,v2);
 
     TEST_ASSERT_NOT_EQUAL(-1,result);
-    TEST_ASSERT_DOUBLE_WITHIN(1e-6,5.20,result);
+    TEST_ASSERT_DOUBLE_WITHIN(1e-6,sqrt(27),result);
 
     free_v(&v1);
     free_v(&v2);
@@ -217,9 +218,9 @@ void test_euclidean_distance_basic(){
 /*Basic Euclidean Norm Test
 *Ensures that the euclidean norm function returns the expected value
 *
-*Property: ||a|| = ∑(ai)^2
+*Property: ||a|| = sqrt(∑(ai)^2)
 *
-*Expected: a=[1,2,3] ||a|| = 14
+*Expected: a=[1,2,3] ||a|| = sqrt(14)
 */
 void test_euclidean_norm_basic(){
     vector *v1 = create_v(3);
@@ -231,7 +232,7 @@ void test_euclidean_norm_basic(){
     double result = euclidean_norm(v1);
 
     TEST_ASSERT_NOT_EQUAL(-1,result);
-    TEST_ASSERT_DOUBLE_WITHIN(1e-6,14.0,result);
+    TEST_ASSERT_DOUBLE_WITHIN(1e-6,sqrt(14.0),result);
 
     free_v(&v1);
 }
@@ -273,7 +274,7 @@ void test_normm_distance_basic(){
     double result = norm_distance(v1,v2);
 
     TEST_ASSERT_NOT_EQUAL(-1,result);
-    TEST_ASSERT_DOUBLE_WITHIN(1e-6,5.20,result);
+    TEST_ASSERT_DOUBLE_WITHIN(1e-6,sqrt(27),result);
 
     free_v(&v1);
     free_v(&v2);
