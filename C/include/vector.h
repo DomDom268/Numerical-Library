@@ -18,7 +18,7 @@ vector *scale_v(vector *v, double scalar);
 double euclidean_distance(vector *v1, vector *v2);
 double manhattan_norm(vector *v);
 double euclidean_norm(vector *v);
-vector *norm_distance(vector *v);
+double norm_distance(vector *v1, vector *v2);
 vector *zeros(int size);
 vector *ones(int size);
 
