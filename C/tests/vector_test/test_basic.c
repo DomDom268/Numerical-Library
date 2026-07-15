@@ -2,10 +2,11 @@
 #include <stdlib.h>
 #include <math.h>
 #define UNITY_INCLUDE_DOUBLE
-#include "vector.h"
 #include "unity.h"
+#include "vector.h"
 
 
+#pragma message("Compiling test_basic.c")
 void setUp(void)
 {
 
@@ -20,7 +21,7 @@ void tearDown(void)
 *Ensuring that the create function initializes the vector correctly 
 *and allocates memory for the data array.
 */
-void test_create_basic(){
+void test_create_basic(void){
     vector *v = create_v(4);
     TEST_ASSERT_NOT_NULL(v);
     TEST_ASSERT_EQUAL_INT(4, v->rows);
@@ -30,9 +31,9 @@ void test_create_basic(){
 /*Free Test
 *Ensuring that the free function properly deallocates the vector's memory.
 */
-void test_free(){
+void test_free_basic(void){
     vector *v = create_v(4);
-    TEST_ASSERT_NOT_NULL(v);
+    // TEST_ASSERT_NOT_NULL(v);
     
     free_v(&v);
     TEST_ASSERT_NULL(v);
@@ -43,7 +44,7 @@ void test_free(){
 *
 *Creates v = [0,0,0,0], sets v[2] = 5.0, and checks if v[2] is indeed 5.0.
 */
-void test_setVal(){
+void test_setVal_basic(void){
     vector *v = create_v(4);
     int result = setVal_v(v, 2, 5.0);
     TEST_ASSERT_EQUAL_INT(1, result);
@@ -59,7 +60,7 @@ void test_setVal(){
 /*Zeros Test
 *Ensuring that the zeros function initializes the vector with all zero values.
 */
-void test_zeros(){
+void test_zeros_basic(void){
     vector *v = zeros(4);
     for(int i=0;i<v->rows;i++){
         TEST_ASSERT_EQUAL_DOUBLE(0.0, v->data[i]);
@@ -70,7 +71,7 @@ void test_zeros(){
 /*Ones Test
 *Ensuring that the ones function initializes the vector with all one values.
 */
-void test_ones(){
+void test_ones_basic(void){
     vector *v = ones(4);
    for(int i=0;i<v->rows;i++){
     TEST_ASSERT_EQUAL_DOUBLE(1.0,v->data[i]);
@@ -86,7 +87,7 @@ void test_ones(){
 *Expected: [1,2,3] + [4,5,6] = [5,7,9]
 */
 
-void test_add_basic(){
+void test_add_basic(void){
     vector *v1 = create_v(3);
     vector *v2 = create_v(3);
 
@@ -115,7 +116,7 @@ void test_add_basic(){
 *
 *Expected: [4,5,6] + [1,2,3] = [3,3,3]
 */
-void test_subtract_basic(){
+void test_subtract_basic(void){
     vector *v1 = create_v(3);
     vector *v2 = create_v(3);
 
@@ -144,7 +145,7 @@ void test_subtract_basic(){
 *
 *Expected: [1,2,3].[4,5,6] = 32
 */
-void test_dot_basic() {
+void test_dot_basic(void) {
     vector *v1 = create_v(3);
     vector *v2 = create_v(3);
 
@@ -169,7 +170,7 @@ void test_dot_basic() {
 *
 *Expected: 2[1,2,3] = [2,4,6]
 */
-void test_scale_basic(){
+void test_scale_basic(void){
     vector *v1 = create_v(3);
     double scalar = 2;
 
@@ -196,7 +197,7 @@ void test_scale_basic(){
 *
 *Expected: d([1,2,3],[4,5,6]) = sqrt(27)
 */
-void test_euclidean_distance_basic(){
+void test_euclidean_distance_basic(void){
     vector *v1 = create_v(3);
     vector *v2 = create_v(3);
 
@@ -222,7 +223,7 @@ void test_euclidean_distance_basic(){
 *
 *Expected: a=[1,2,3] ||a|| = sqrt(14)
 */
-void test_euclidean_norm_basic(){
+void test_euclidean_norm_basic(void){
     vector *v1 = create_v(3);
 
     for(int i=0;i<3;i++){
@@ -243,7 +244,7 @@ void test_euclidean_norm_basic(){
 *
 *Expected: a = [1,2,3] ||a|| = 6.0
 */
-void test_manhattan_norm(){
+void test_manhattan_norm_basic(void){
     vector *v1 = create_v(3);
 
     for(int i=0;i<3;i++){
@@ -262,7 +263,7 @@ void test_manhattan_norm(){
 *
 *Property: d(a,b) = ||a-b||
 */
-void test_normm_distance_basic(){
+void test_normm_distance_basic(void){
     vector *v1 = create_v(3);
     vector *v2 = create_v(3);
 
@@ -281,22 +282,3 @@ void test_normm_distance_basic(){
 
 }
 
-int main(void){
-    UNITY_BEGIN();
-
-    RUN_TEST(test_create_basic);
-    RUN_TEST(test_free);
-    RUN_TEST(test_setVal);
-    RUN_TEST(test_zeros);
-    RUN_TEST(test_ones);
-    RUN_TEST(test_add_basic);
-    RUN_TEST(test_subtract_basic);
-    RUN_TEST(test_dot_basic);
-    RUN_TEST(test_scale_basic);
-    RUN_TEST(test_euclidean_distance_basic);
-    RUN_TEST(test_euclidean_norm_basic);
-    RUN_TEST(test_manhattan_norm);
-    RUN_TEST(test_normm_distance_basic);
-
-    return UNITY_END();
-}

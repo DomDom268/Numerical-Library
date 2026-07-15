@@ -3,10 +3,7 @@
 #include <math.h>
 #include "vector.h"
 
-// typedef struct {
-//     int rows;
-//     double *data; //pointer to a 1D array
-// } vector;
+
 
 vector *create_v(int rows){
     if(rows<=0){
