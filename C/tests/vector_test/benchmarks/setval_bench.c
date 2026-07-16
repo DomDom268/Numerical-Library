@@ -17,8 +17,8 @@ int main(void){
     int trials = 10000;
     int size = 10000;
 
-    BenchResults results = bench_create(trials,size);
-
+    BenchResults results = bench_setval(10000,10000);
+    
     printf("Average  time for the create_v function: %.9f nanoseconds \n", results.average);
     printf("Max create_v function time: %.8f nanoseconds \n", results.max);
     printf("Min create_v function time: %.8f nanoseconds \n" , results.min);
