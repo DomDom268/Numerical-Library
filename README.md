@@ -14,5 +14,5 @@ A C implementation of fundamental numerical linear algebra algorithms.
 
 - [x] Vector data structure
 - [x] Matrix data structure
-- [ ] Unit testing
+- [x] Unit testing
 - [ ] Documentation
