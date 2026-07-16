@@ -4,7 +4,6 @@
 #include "vector.h"
 
 
-
 vector *create_v(int rows){
     if(rows<=0){
         printf("Vector must have more than 0 rows");
