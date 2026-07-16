@@ -8,11 +8,11 @@
 
 int main(void){
 
-    FILE *file = fopen("benchmark_results.csv","w");
+    // FILE *file = fopen("benchmark_results.csv","w");
 
-    fprintf(file, "function,size,trials,average,max,min\n");
+    // fprintf(file, "function,size,trials,average,max,min\n");
 
-    fclose(file);
+    // fclose(file);
     
     int trials = 10000;
     int size = 10000;
