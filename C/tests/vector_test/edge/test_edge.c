@@ -258,6 +258,10 @@ void test_underflow(void){
     TEST_ASSERT_EQUAL_DOUBLE(0.0,check1);
     TEST_ASSERT_EQUAL_DOUBLE(0.0,check2->data[0]);
     TEST_ASSERT_EQUAL_DOUBLE(0.0,check3);
+
+    free_v(&a);
+    free_v(&b);
+    free(&check2);
 }
 
 
