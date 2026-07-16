@@ -28,7 +28,7 @@ double bench_create( int trials, int size){
 int main(void){
     
     double bench_time = bench_create(1000,10);
-    printf("Avergae time for the create_v function with over 1000 trials with size 10 vectors", bench_time);
-    
+    printf("Avergae time for the create_v function with over 1000 trials with size 10 vectors: %d", bench_time);
+
     return 0;
 }
