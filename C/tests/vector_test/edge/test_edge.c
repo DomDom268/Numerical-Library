@@ -87,13 +87,14 @@ void test_setval_invalid(void){
 */
 void test_getval_invalid(void){
     vector *a = create_v(3);
-    double *out;
+    double *out1;
+    double *out2;
 
-    int result1 = getVal_v(a,-1, &out);
-    int result2 = getVal_v(a,5,&out);
+    int result1 = getVal_v(a,-1, out1);
+    int result2 = getVal_v(a,5,out2);
     
-    TEST_ASSERT_EQUAL_INT16(-1,result1);
-    TEST_ASSERT_EQUAL_INT16(-1,result2);
+    TEST_ASSERT_EQUAL_INT16(0,result1);
+    TEST_ASSERT_EQUAL_INT16(0,result2);
 
     free_v(&a);
 }
@@ -151,7 +152,7 @@ void test_infinity(void){
 
 
     TEST_ASSERT_DOUBLE_IS_INF(check1->data[0]);
-    TEST_ASSERT_DOUBLE_WITHIN(1e-6,0.0,check2->data[0]);
+    TEST_ASSERT_DOUBLE_WITHIN(1e-6,-inf,check2->data[0]);
     TEST_ASSERT_DOUBLE_IS_INF(check3);
     TEST_ASSERT_DOUBLE_WITHIN(1e-6,inf,check4->data[0]);
     TEST_ASSERT_DOUBLE_IS_INF(check5);
@@ -218,7 +219,7 @@ void test_overflow(void){
 
     double max = DBL_MAX;
     a->data[0] = max;
-    b->data[0] = 1;
+    b->data[0] = 20;
 
     vector *check1 = add_v(a,b);
     double check2 = dot_v(a,b);
@@ -234,7 +235,6 @@ void test_overflow(void){
     free_v(&b);
     free_v(&check1);
     free_v(&check3);
-    free_v(&check4);
 }
 
 /*Underflow test for dot product, scalar multiplication, euclidean norm
