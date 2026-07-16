@@ -264,7 +264,7 @@ void test_underflow(void){
 
     free_v(&a);
     free_v(&b);
-    free(&check2);
+    
 }
 
 
