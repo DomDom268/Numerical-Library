@@ -6,7 +6,7 @@
 
 double bench_create( int trials, int size){
 
-    double comprehensive_time = 0;
+    double comprehensive_time_ns = 0;
     for(int i=0;i<trials;i++){
 
         clock_t start = clock();
@@ -16,19 +16,18 @@ double bench_create( int trials, int size){
 
         clock_t end = clock();
 
-        double trial_time = (end-start);
-        comprehensive_time += trial_time;
+        comprehensive_time_ns += ((double)(end - start) * 1e9) / CLOCKS_PER_SEC;
     }
 
-    double avg_time_elapsed = comprehensive_time/ trials;
+    return comprehensive_time_ns / trials;
     
-    return avg_time_elapsed;
+    
 }
 
 int main(void){
     
     double bench_time = bench_create(1000,10);
-    printf("Avergae time for the create_v function with over 1000 trials with size 10 vectors: %d", bench_time);
+    printf("Avergae time for the create_v function with over 1000 trials with size 10 vectors: %.9f nanoseconds", bench_time);
 
     return 0;
 }
