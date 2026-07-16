@@ -216,14 +216,16 @@ void test_nan(void){
 void test_overflow(void){
     vector *a = create_v(1);
     vector *b = create_v(1);
+    vector *c = create_v(1);
 
     double max = DBL_MAX;
     a->data[0] = max;
     b->data[0] = 20;
+    c->data[0] = 0.5;
 
     vector *check1 = add_v(a,b);
-    double check2 = dot_v(a,b);
-    vector *check3 = scale_v(b,max);
+    double check2 = dot_v(a,c);
+    vector *check3 = scale_v(c,max);
     double check4 = manhattan_norm(a);
 
     TEST_ASSERT_DOUBLE_IS_INF(check1->data[0]);
@@ -233,6 +235,7 @@ void test_overflow(void){
 
     free_v(&a);
     free_v(&b);
+    free_v(&c);
     free_v(&check1);
     free_v(&check3);
 }
