@@ -1,16 +1,16 @@
-CC = gcc
+EDGE_CC = gcc
 
-CFLAGS = -IC/INCLUDE -IC/Unity/src
+EDGE_CFLAGS = -IC/INCLUDE -IC/Unity/src -DUNITY_INCLUDE_DOUBLE
 
-SRC = C/src/vector.c C/Unity/src/unity.c
+EDGE_SRC = C/src/vector.c C/Unity/src/unity.c
 
-TEST_SRC = C/tests/vector_test/edge/test_edge.c C/tests/vector_test/edge/test_edge_runner.c
+EDGE_TEST_SRC = C/tests/vector_test/edge/test_edge.c C/tests/vector_test/edge/test_edge_runner.c
 
-TARGET = edge
+EDGE_TARGET = edge
 
 edge:
-	$(CC) $(SRC) $(TEST_SRC) $(CFLAGS) -o $(TARGET)
+	$(EDGE_CC) $(EDGE_SRC) $(EDGE_TEST_SRC) $(EDGE_CFLAGS) -o $(EDGE_TARGET)
 
 
 edge_run:
-	./$(TARGET)
+	./$(EDGE_TARGET)

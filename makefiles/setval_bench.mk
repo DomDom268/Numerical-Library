@@ -1,17 +1,17 @@
-CC = gcc
+SVB_CC = gcc
 
-CFLAGS = -IC/INCLUDE
+SVB_CFLAGS = -IC/INCLUDE
 
-SRC = C/src/vector.c C/src/benchmark.c 
+SVB_SRC = C/src/vector.c C/src/benchmark.c 
 
-TEST_SRC = C/tests/vector_test/benchmarks/setval_bench.c 
+SVB_TEST_SRC = C/tests/vector_test/benchmarks/setval_bench.c 
 
-TARGET = benchmarks
+SVB_TARGET = benchmarks
 
 setval_bench:
-	$(CC) $(SRC) $(TEST_SRC) $(CFLAGS) -o $(TARGET)
+	$(SVB_CC) $(SVB_SRC) $(SVB_TEST_SRC) $(SVB_CFLAGS) -o $(SVB_TARGET)
 
 
 setval_run:
-	./$(TARGET)
+	./$(SVB_TARGET)
 

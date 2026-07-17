@@ -1,16 +1,16 @@
-CC = gcc
+MATH_CC = gcc
 
-CFLAGS = -IC/INCLUDE -IC/Unity/src
+MATH_CFLAGS = -IC/INCLUDE -IC/Unity/src -DUNITY_INCLUDE_DOUBLE
 
-SRC = C/src/vector.c C/Unity/src/unity.c
+MATH_SRC = C/src/vector.c C/Unity/src/unity.c
 
-TEST_SRC = C/tests/vector_test/mathematical/test_math.c C/tests/vector_test/mathematical/test_math_runner.c
+MATH_TEST_SRC = C/tests/vector_test/mathematical/test_math.c C/tests/vector_test/mathematical/test_math_runner.c
 
-TARGET = math
+MATH_TARGET = math
 
 math:
-	$(CC) $(SRC) $(TEST_SRC) $(CFLAGS) -o $(TARGET)
+	$(MATH_CC) $(MATH_SRC) $(MATH_TEST_SRC) $(MATH_CFLAGS) -o $(MATH_TARGET)
 
 
 math_run:
-	./$(TARGET)
+	./$(MATH_TARGET)

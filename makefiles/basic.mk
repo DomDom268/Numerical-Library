@@ -1,17 +1,17 @@
-CC = gcc
+BASIC_CC = gcc
 
-CFLAGS = -IC/INCLUDE -IC/Unity/src
+BASIC_CFLAGS = -IC/INCLUDE -IC/Unity/src -DUNITY_INCLUDE_DOUBLE
 
-SRC = C/src/vector.c C/Unity/src/unity.c
+BASIC_SRC = C/src/vector.c C/Unity/src/unity.c
 
-TEST_SRC = C/tests/vector_test/basic/test_basic.c C/tests/vector_test/basic/test_basic_runner.c
+BASIC_TEST_SRC = C/tests/vector_test/basic/test_basic.c C/tests/vector_test/basic/test_basic_runner.c
 
-TARGET = basic
+BASIC_TARGET = basic_test
 
 basic:
-	$(CC) $(SRC) $(TEST_SRC) $(CFLAGS) -o $(TARGET)
+	$(BASIC_CC) $(BASIC_SRC) $(BASIC_TEST_SRC) $(BASIC_CFLAGS) -o $(BASIC_TARGET)
 
 
 basic_run:
-	./$(TARGET)
+	./$(BASIC_TARGET)
 
