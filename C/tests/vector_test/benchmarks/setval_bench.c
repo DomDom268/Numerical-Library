@@ -14,10 +14,10 @@ int main(void){
 
     // fclose(file);
     
-    int trials = 10000;
-    int size = 10000;
+    int trials = 1000000;
+    int size = 100;
 
-    BenchResults results = bench_setval(10000,10000);
+    BenchResults results = bench_setval(trials,size);
 
     printf("Average  time for the create_v function: %.9f nanoseconds \n", results.average);
     printf("Max create_v function time: %.8f nanoseconds \n", results.max);
