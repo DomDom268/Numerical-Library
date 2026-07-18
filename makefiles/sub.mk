@@ -1,0 +1,16 @@
+SUB_CC = gcc
+
+SUB_CFLAGS = -IC/INCLUDE 
+
+SUB_SRC = C/src/vector.c C/src/benchmark.c
+
+SUB_TEST_SRC = C/tests/vector_test/benchmarks/sub_bench.c
+
+SUB_TARGET = add
+
+sub:
+	$(SUB_CC) $(SUB_SRC) $(SUB_TEST_SRC) $(SUB_CFLAGS) -o $(SUB_TARGET)
+
+
+sub_run:
+	./$(SUB_TARGET)
