@@ -66,7 +66,7 @@ def free(v):
     lib.free_v(ctypes.byref(v))
 
 def test_dot():
-    print("Testing dot product")
+    # print("Testing dot product")
     a = np.random.randn(10)
     b = np.random.randn(10)
 
@@ -81,16 +81,114 @@ def test_dot():
 
     return abs(c_result - np_result) < 1e-9
 
+def test_add():
+    # print("Testing vector addition function")
+    a = np.random.randn(10)
+    b = np.random.randn(10)
+
+    va = py_to_vec(a)
+    vb = py_to_vec(b)
+
+    c_result = lib.add_v(va,vb)
+    np_result = np.add(a,b)
+
+    free(va)
+    free(vb)
+
+    return np.array_equal(vec_to_py(c_result),np_result)
+
+def test_sub():
+    # print("Testing vector subtraction function")
+    a = np.random.randn(10)
+    b = np.random.randn(10)
+
+    va = py_to_vec(a)
+    vb = py_to_vec(b)
+
+    c_result = lib.subtract_v(va,vb)
+    np_result = np.subtract(a,b)
+
+    free(va)
+    free(vb)
+
+    return np.array_equal(vec_to_py(c_result),np_result)
+
+def test_scale():
+    # print("Testing vector addition function")
+    a = np.random.randn(10)
+    scalar = np.random.random()
+
+    va = py_to_vec(a)
+   
+
+    c_result = lib.scale_v(va,float(scalar))
+    np_result = a * float(scalar)
+
+    free(va)
+    
+    return np.array_equal(vec_to_py(c_result),np_result)
+
+def test_norm_distance():
+    # print("Testing vector euclidean distance utilizing the norm function")
+    a = np.random.randn(10)
+    b = np.random.randn(10)
+
+    va = py_to_vec(a)
+    vb = py_to_vec(b)
+
+    c_result = lib.norm_distance(va,vb)
+    np_result = np.linalg.norm(a-b) 
+
+    free(va)
+    free(vb)
+
+    return abs(c_result - np_result) < 1e-9
+
+def test_manhattan():
+    # print("Testing vector manhattan norm function")
+    a = np.random.randn(10)
+    
+    va = py_to_vec(a)
+   
+    c_result = lib.manhattan_norm(va)
+    np_result = np.linalg.norm(a,ord=1)
+
+    free(va)
+    
+    return abs(c_result - np_result) < 1e-9
+
+def test_euclidean():
+    # print("Testing vector euclidean norm function")
+    a = np.random.randn(10)
+    
+    va = py_to_vec(a)
+   
+    c_result = lib.euclidean_norm(va)
+    np_result = np.linalg.norm(a)
+
+    free(va)
+    
+    return abs(c_result - np_result) < 1e-9
+
 if __name__ == "__main__":
-    tests = [("Dot Product", test_dot)]
+    tests = [
+        ("Dot Product", test_dot),
+        ("Vector Addition", test_add),
+        ("Vector Subtraction",test_sub),
+        ("Vector Scalar Multiplication", test_scale),
+        ("Distance", test_norm_distance),
+        ("Manhattan Norm", test_manhattan),
+        ("Euclidean Norm", test_euclidean)
+        ]
 
     print("n=== Runing Vector Module Tests ===\n")
 
     passed = 0
     for name, fn in tests:
         ok = fn()
-        print({f"{name}: {'PASS' if ok else 'FAIL'}"})
+        print(f"{name}:{'PASS' if ok else 'FAIL'}")
         if ok:
-            passed += 1
+             passed += 1
     
-    print(f"\n{passed}/{len(tests)} tests passed.")
+    print(f"\n{passed}/{len(tests)} tests passed")
+        
