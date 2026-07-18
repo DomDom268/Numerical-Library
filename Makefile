@@ -10,7 +10,8 @@ include makefiles/scale.mk
 include makefiles/eucdist.mk
 include makefiles/eucnorm.mk
 include makefiles/mannorm.mk
-
+include makefiles/print.mk
+include makefiles/normbench.mk
 
 clean:
 	rm -f *.exe
