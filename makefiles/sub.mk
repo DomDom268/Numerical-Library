@@ -6,7 +6,7 @@ SUB_SRC = C/src/vector.c C/src/benchmark.c
 
 SUB_TEST_SRC = C/tests/vector_test/benchmarks/sub_bench.c
 
-SUB_TARGET = add
+SUB_TARGET = sub
 
 sub:
 	$(SUB_CC) $(SUB_SRC) $(SUB_TEST_SRC) $(SUB_CFLAGS) -o $(SUB_TARGET)

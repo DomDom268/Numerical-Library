@@ -5,6 +5,7 @@ include makefiles/create_bench.mk
 include makefiles/setval_bench.mk
 include makefiles/add.mk
 include makefiles/sub.mk
+include makefiles/dot.mk
 
 
 clean:
