@@ -254,6 +254,58 @@ BenchResults bench_dot(int trials, int size){
     return result;
 }
 
+/*function that returns benchmark for vector scaling function*/
+BenchResults bench_scale(int trials, int size){
+    double comprehensive_time_ns = 0;
+    double trial_time = 0;
+    double min;
+    double max;
+    double scalar = random_double();
+
+    for(int i=0;i<trials;i++){
+        vector *a = create_v(size);
+
+        for (int j=0;j<size;j++){
+                setVal_v(a,j,random_double());
+        }
+
+        clock_t start = clock();
+
+        vector *result = scale_v(a,random_double());
+
+        clock_t end = clock();
+
+        free_v(&a);
+        free_v(&result);
+        
+        trial_time = ((double)(end - start) * 1e9) / CLOCKS_PER_SEC;
+        
+        if(i==0){ 
+
+            min = trial_time;
+            max = trial_time;
+
+        } else if(trial_time < min){
+
+            min = trial_time;
+
+        } else if(trial_time > max){
+
+            max = trial_time;
+        }
+        
+        comprehensive_time_ns += trial_time;
+    }
+
+    BenchResults result;
+    result.average = comprehensive_time_ns / trials; 
+    result.max = max;
+    result.min = min;
+
+    return result;
+}
+
+
 /*function that writes to the csv to save the benchmark results*/
 void write_csv (const char *filename, const char *function, int size, int trials, BenchResults results){
 
