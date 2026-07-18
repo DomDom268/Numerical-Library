@@ -1,5 +1,7 @@
 #ifndef VECTOR_H
 #define VECTOR_H
+#pragma once
+#include <stddef.h>
 
 typedef struct {
     int rows;
