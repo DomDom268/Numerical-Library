@@ -7,6 +7,10 @@ include makefiles/add.mk
 include makefiles/sub.mk
 include makefiles/dot.mk
 include makefiles/scale.mk
+include makefiles/eucdist.mk
+include makefiles/eucnorm.mk
+include makefiles/mannorm.mk
+
 
 clean:
 	rm -f *.exe

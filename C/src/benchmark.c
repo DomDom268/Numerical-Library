@@ -204,7 +204,7 @@ BenchResults bench_sub(int trials, int size){
 
 /*function that returns benchmark for dot product function*/
 BenchResults bench_dot(int trials, int size){
-     double comprehensive_time_ns = 0;
+    double comprehensive_time_ns = 0;
     double trial_time = 0;
     double min;
     double max;
@@ -277,6 +277,157 @@ BenchResults bench_scale(int trials, int size){
 
         free_v(&a);
         free_v(&result);
+        
+        trial_time = ((double)(end - start) * 1e9) / CLOCKS_PER_SEC;
+        
+        if(i==0){ 
+
+            min = trial_time;
+            max = trial_time;
+
+        } else if(trial_time < min){
+
+            min = trial_time;
+
+        } else if(trial_time > max){
+
+            max = trial_time;
+        }
+        
+        comprehensive_time_ns += trial_time;
+    }
+
+    BenchResults result;
+    result.average = comprehensive_time_ns / trials; 
+    result.max = max;
+    result.min = min;
+
+    return result;
+}
+
+
+/*function that returns benchmark for euclidean distance function*/
+BenchResults bench_euclidean(int trials, int size){
+    double comprehensive_time_ns = 0;
+    double trial_time = 0;
+    double min;
+    double max;
+
+    for(int i=0;i<trials;i++){
+        vector *a = create_v(size);
+        vector *b = create_v(size);
+
+        for (int j=0;j<size;j++){
+                setVal_v(a,j,random_double());
+                setVal_v(b,j,random_double());
+        }
+
+        clock_t start = clock();
+
+        double result = euclidean_distance(a,b);
+
+        clock_t end = clock();
+
+        free_v(&a);
+        free_v(&b);
+        
+        trial_time = ((double)(end - start) * 1e9) / CLOCKS_PER_SEC;
+        
+        if(i==0){ 
+
+            min = trial_time;
+            max = trial_time;
+
+        } else if(trial_time < min){
+
+            min = trial_time;
+
+        } else if(trial_time > max){
+
+            max = trial_time;
+        }
+        
+        comprehensive_time_ns += trial_time;
+    }
+
+    BenchResults result;
+    result.average = comprehensive_time_ns / trials; 
+    result.max = max;
+    result.min = min;
+
+    return result;
+}
+
+/*function that returns benchmark for euclidean norm function*/
+BenchResults bench_euclidean_norm(int trials, int size){
+    double comprehensive_time_ns = 0;
+    double trial_time = 0;
+    double min;
+    double max;
+
+    for(int i=0;i<trials;i++){
+        vector *a = create_v(size);
+
+        for (int j=0;j<size;j++){
+                setVal_v(a,j,random_double());
+        }
+
+        clock_t start = clock();
+
+        double result = euclidean_norm(a);
+
+        clock_t end = clock();
+
+        free_v(&a);
+        
+        trial_time = ((double)(end - start) * 1e9) / CLOCKS_PER_SEC;
+        
+        if(i==0){ 
+
+            min = trial_time;
+            max = trial_time;
+
+        } else if(trial_time < min){
+
+            min = trial_time;
+
+        } else if(trial_time > max){
+
+            max = trial_time;
+        }
+        
+        comprehensive_time_ns += trial_time;
+    }
+
+    BenchResults result;
+    result.average = comprehensive_time_ns / trials; 
+    result.max = max;
+    result.min = min;
+
+    return result;
+}
+
+/*function that returns benchmark for euclidean norm function*/
+BenchResults bench_manhattan_norm(int trials, int size){
+    double comprehensive_time_ns = 0;
+    double trial_time = 0;
+    double min;
+    double max;
+
+    for(int i=0;i<trials;i++){
+        vector *a = create_v(size);
+
+        for (int j=0;j<size;j++){
+                setVal_v(a,j,random_double());
+        }
+
+        clock_t start = clock();
+
+        double result = manhattan_norm(a);
+
+        clock_t end = clock();
+
+        free_v(&a);
         
         trial_time = ((double)(end - start) * 1e9) / CLOCKS_PER_SEC;
         
