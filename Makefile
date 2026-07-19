@@ -12,6 +12,7 @@ include makefiles/eucnorm.mk
 include makefiles/mannorm.mk
 include makefiles/print.mk
 include makefiles/normbench.mk
+include makefiles/comprehensive.mk
 
 clean:
 	rm -f *.exe

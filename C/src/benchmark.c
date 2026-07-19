@@ -557,6 +557,80 @@ BenchResults bench_norm_dist(int trials, int size){
     return result;
 }
 
+/*function that benchmarks a combination of the functions 
+*meant to simulate the usage of the functions* to find the angle between 2 scaled result vectors*/
+BenchResults bench_comprehensive(int trials, int size){
+    double comprehensive_time_ns = 0;
+    double trial_time = 0;
+    double min;
+    double max;
+
+    for(int i=0;i<trials;i++){
+        clock_t start = clock();
+        vector *a = create_v(size);
+        vector *b = create_v(size);
+        vector *c = create_v(size);
+        vector *d = create_v(size);
+
+        for (int j=0;j<size;j++){
+            setVal_v(a,j,random_double());
+            setVal_v(b,j,random_double());
+            setVal_v(c,j,random_double());
+            setVal_v(d,j,random_double());
+        }
+
+        /*Calculate result vectors*/
+        vector *e = add_v(a,b);
+        vector *f = subtract_v(d,c);
+
+        /*Scale results*/
+        e = scale_v(e,random_double());
+        f = scale_v(f,random_double());
+
+        /*Calculate dot product and norms*/
+        double e_dot_f = dot_v(e,f);
+        double e_norm = euclidean_norm(e);
+        double f_norm = euclidean_norm(f);   
+
+        /*Calculate angle*/
+        double angle = acos(e_dot_f/(e_norm * f_norm));
+
+        clock_t end = clock();
+
+        free_v(&a);
+        free_v(&b);
+        free_v(&c);
+        free_v(&d);
+        free_v(&e);
+        free_v(&f);
+        
+        trial_time = ((double)(end - start) * 1e9) / CLOCKS_PER_SEC;
+        
+        if(i==0){ 
+
+            min = trial_time;
+            max = trial_time;
+
+        } else if(trial_time < min){
+
+            min = trial_time;
+
+        } else if(trial_time > max){
+
+            max = trial_time;
+        }
+        
+        comprehensive_time_ns += trial_time;
+    }
+
+    BenchResults result;
+    result.average = comprehensive_time_ns / trials; 
+    result.max = max;
+    result.min = min;
+
+    return result;
+}
+
 /*function that writes to the csv to save the benchmark results*/
 void write_csv (const char *filename, const char *function, int size, int trials, BenchResults results){
 
