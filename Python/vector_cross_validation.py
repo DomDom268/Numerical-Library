@@ -50,6 +50,13 @@ lib.zeros.argtypes = [ctypes.c_int]
 lib.zeros.restype = ctypes.POINTER(Vector)
 lib.ones.argtypes = [ctypes.c_int]
 lib.ones.restype = ctypes.POINTER(Vector)
+lib.slice.argtypes = [
+    ctypes.POINTER(Vector),
+    ctypes.c_int,
+    ctypes.c_int,
+    ctypes.c_int
+    ]
+lib.slice.restype = ctypes.POINTER(Vector)
 
 
 def py_to_vec(arr):
@@ -170,6 +177,20 @@ def test_euclidean():
     
     return abs(c_result - np_result) < 1e-9
 
+def test_slice():
+    a = np.random.randn(10)
+    
+    va = py_to_vec(a)
+   
+    c_result = lib.slice(va,2,5,1)
+    np_result = a[2:6]
+
+    free(va)
+
+    return np.array_equal(vec_to_py(c_result),np_result)
+
+
+
 if __name__ == "__main__":
     tests = [
         ("Dot Product", test_dot),
@@ -178,7 +199,8 @@ if __name__ == "__main__":
         ("Vector Scalar Multiplication", test_scale),
         ("Distance", test_norm_distance),
         ("Manhattan Norm", test_manhattan),
-        ("Euclidean Norm", test_euclidean)
+        ("Euclidean Norm", test_euclidean),
+        ("Vector Slice", test_slice)
         ]
 
     print("n=== Runing Vector Module Tests ===\n")
