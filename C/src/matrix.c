@@ -53,7 +53,7 @@ void free_matrix(matrix *m) {
 }
 
 //function to add value to matrix; returns 1 if successfull and 0 otherwise
-int set_val(matrix *m, int rows, int cols, double val) {
+int setVal(matrix *m, int rows, int cols, double val) {
     if(!m || rows >= m->rows || cols >=m->cols){
         printf("Invalid index");
         return 0;
@@ -64,7 +64,7 @@ int set_val(matrix *m, int rows, int cols, double val) {
 }
 
 //function to get value from the matrix; retrusn 1 if successful and 0 otherwise
-int get_val(matrix *m, int rows, int cols, double *out) {
+int getVal(matrix *m, int rows, int cols, double *out) {
     if(!m || rows >= m->rows || cols >=m->cols || !out){
         printf("Invalid index or output pointer");
         return 0;
@@ -87,7 +87,7 @@ void print_matrix(matrix *m) {
 }
 
 //function to add two matrices; returns a new matrix if successful and NULL otherwise
-matrix *add(matrix *a, matrix *b) {
+matrix *mat_add(matrix *a, matrix *b) {
 
     if(!a || !b || a->rows != b->rows || a->cols != b->cols){
         printf("Matrices must have the same dimensions for addition");
@@ -107,7 +107,7 @@ matrix *add(matrix *a, matrix *b) {
 }
 
 //function to subtract two matrices; returns a new matrix if successful and NULL otherwise
-matrix *subtract(matrix *a, matrix *b) {
+matrix *mat_subtract(matrix *a, matrix *b) {
 
     if(!a || !b || a->rows != b->rows || a->cols != b->cols){
         printf("Matrices must have the same dimensions for subtraction");
@@ -142,7 +142,7 @@ matrix *scalar_multiply(matrix *m, double scalar) {
 }
 
 //function to multiply two matrices; returns a new matrix if successful and NULL otherwise
-matrix *multiply(matrix *a, matrix *b) {
+matrix *mat_multiply(matrix *a, matrix *b) {
     if(!a || !b || a->cols != b->rows){
         printf("Imcompatible dimensions for multiplication");
         return NULL;
@@ -163,6 +163,24 @@ matrix *multiply(matrix *a, matrix *b) {
     return result;
 }
 
+//function to calculate element wise multipllication of two matrices
+matrix *mat_elm_multiply(matrix *a, matrix *b){
+    if(!a || !b || a->cols != b->cols || a->rows != b->rows){
+        printf("Incompatible matrices");
+        return NULL;
+    }
+
+    matrix *result = create(a->rows,a->cols);
+    if(!result) return NULL;
+
+    for(int i=0;i<a->rows;i++){
+        for(int j=0;j<b->cols;j++){
+            result->data[i][j] = a->data[i][j] * b->data[i][j];
+        }
+    }
+
+    return result;
+}
 //function to transpose a matrix; returns a new matrix if successful and NULL otherwise
 matrix *transpose(matrix *m) {
     if(!m) return NULL;
@@ -178,7 +196,7 @@ matrix *transpose(matrix *m) {
     return result;
 }
 
-matrix *identity(int size){
+matrix *mat_identity(int size){
     if(size <=0){
         printf("Size must be greater than 0 for identity matrix");
         return NULL;
