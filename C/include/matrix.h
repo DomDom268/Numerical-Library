@@ -10,7 +10,7 @@ typedef struct {
 } matrix;
 
 matrix *create(int rows, int cols);
-void free_matrix(matrix *m);
+void free_matrix(matrix **m);
 int setVal(matrix *m, int rows, int cols, double val);
 int getVal(matrix *m, int rows,int cols, double *out);
 void print_matrix(matrix *m);

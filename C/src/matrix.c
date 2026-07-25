@@ -43,13 +43,14 @@ matrix *create(int rows, int cols) {
 }
 
 // function to free matrix memory
-void free_matrix(matrix *m) {
-    if(!m) return;
-    for(int i = 0;i < m->rows; i++){
-        free(m->data[i]);
+void free_matrix(matrix **m) {
+    if(m == NULL || *m == NULL) return;
+    for(int i = 0;i < (*m)->rows; i++){
+        free((*m)->data[i]);
     }
-    free(m->data);
-    free(m);
+    free((*m)->data);
+    free(*m);
+    *m = NULL;
 }
 
 //function to add value to matrix; returns 1 if successfull and 0 otherwise
