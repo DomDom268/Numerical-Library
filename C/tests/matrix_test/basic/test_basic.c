@@ -47,11 +47,12 @@ void test_free_matrix_basic(void){
 */
 void test_set_get_basic(void){
     matrix *m = create(2,2);
-    int status = setVal(m,1,2,6.0);
-    TEST_ASSERT_NOT_EQUAL_INT(0,status);
+    int set_status = setVal(m,0,1,6.0);
+    TEST_ASSERT_NOT_EQUAL_INT(0,set_status);
 
     double val;
-    getVal(m,1,2,&val);
+    int get_status = getVal(m,0,1,&val);
+    TEST_ASSERT_NOT_EQUAL_INT(0,get_status);
     TEST_ASSERT_EQUAL_DOUBLE(6.0,val);
 
     free_matrix(&m);
