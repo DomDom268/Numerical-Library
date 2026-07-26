@@ -237,3 +237,21 @@ void test_transpose_basic(void){
     free_matrix(&result);
 
 }
+
+/*Basic test for the identity function
+*Ensures that mat_identity functions as intended
+*Expects to return a matrix with only 1s in the diagonal
+*/
+void test_mat_identity(void){
+    
+    matrix *identity = mat_identity(3);
+
+    TEST_ASSERT_NOT_NULL(identity);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,identity->data[0][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,identity->data[1][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,identity->data[2][2]);
+
+    free_matrix(&identity);
+
+
+}
