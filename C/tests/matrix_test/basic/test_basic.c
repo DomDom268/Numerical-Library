@@ -247,9 +247,15 @@ void test_mat_identity(void){
     matrix *identity = mat_identity(3);
 
     TEST_ASSERT_NOT_NULL(identity);
-    TEST_ASSERT_EQUAL_DOUBLE(0.0,identity->data[0][0]);
-    TEST_ASSERT_EQUAL_DOUBLE(0.0,identity->data[1][1]);
-    TEST_ASSERT_EQUAL_DOUBLE(0.0,identity->data[2][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(1.0,identity->data[0][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,identity->data[0][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,identity->data[0][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,identity->data[1][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(1.0,identity->data[1][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,identity->data[1][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,identity->data[2][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,identity->data[2][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(1.0,identity->data[2][2]);
 
     free_matrix(&identity);
 
