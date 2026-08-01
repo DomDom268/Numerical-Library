@@ -153,10 +153,10 @@ void test_additive_identity(void){
     TEST_ASSERT_NOT_NULL(result);
     TEST_ASSERT_EQUAL_DOUBLE(7.0,result->data[0][0]);
     TEST_ASSERT_EQUAL_DOUBLE(8.0,result->data[0][1]);
-    TEST_ASSERT_EQUAL_DOUBLE(8.0,result->data[0][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(9.0,result->data[0][2]);
     TEST_ASSERT_EQUAL_DOUBLE(10.0,result->data[1][0]);
     TEST_ASSERT_EQUAL_DOUBLE(11.0,result->data[1][1]);
-    TEST_ASSERT_EQUAL_DOUBLE(12.0,result->data[2][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(12.0,result->data[1][2]);
     TEST_ASSERT_EQUAL_DOUBLE(13.0,result->data[2][0]);
     TEST_ASSERT_EQUAL_DOUBLE(14.0,result->data[2][1]);
     TEST_ASSERT_EQUAL_DOUBLE(15.0,result->data[2][2]);
@@ -166,39 +166,6 @@ void test_additive_identity(void){
     free_matrix(&result);
 }
 
-/*Inverse test for matri addition
-*Ensures that matrix addition function abides by the law
-*Expected: A + A^-1 = I, where I is the identity matrix
-*/
-void test_inverse(void){
-    matrix *A = create(2,2);
-    matrix *A_inv = create(2,2);
-    matrix *I = mat_identity(2);
-
-    double A_val = 1;
-    for(int i=0;i<A->rows;i++){
-        for(int j=0;j<A->cols;j++){
-            setVal(A,i,j,A_val++);
-        }
-    }
-
-    setVal(A_inv,0,0,-2);
-    setVal(A_inv,0,1,1);
-    setVal(A_inv,1,0,1.5);
-    setVal(A_inv,1,1,-0.5);
-
-    matrix *result = mat_add(A,A_inv);
-    TEST_ASSERT_NOT_NULL(result);
-    TEST_ASSERT_EQUAL_DOUBLE(I->data[0][0],result->data[0][0]);
-    TEST_ASSERT_EQUAL_DOUBLE(I->data[0][1],result->data[0][1]);
-    TEST_ASSERT_EQUAL_DOUBLE(I->data[1][0],result->data[1][0]);
-    TEST_ASSERT_EQUAL_DOUBLE(I->data[1][1],result->data[1][1]);
-
-    free_matrix(&A);
-    free_matrix(&A_inv);
-    free_matrix(&I);
-    free_matrix(&result);
-}
 
 /*Closure test for matrix addition
 *Ensures the addition function abides by closure
@@ -235,7 +202,6 @@ void test_add(void){
     test_additive_identity();
     test_additive_inverse();
     test_add_closure();
-    test_inverse();
 }
 
 /*Associativity Law for Matrix Scalar Multiplication
@@ -514,3 +480,613 @@ void test_scalar_comprehensive(void){
     test_scalar_closure();
 }
 
+/*Commutative test for element wise multiplication (Hadamard Product)
+*Ensures that the element wise multiplication function abides by the commutative law
+*Expected: A.*B = B.*A
+*/
+void test_hadamard_commutative(void){
+    matrix *A = create(3,3);
+    matrix *B = create(3,3);
+
+    double A_val = 1;
+    double B_val = 5;
+    for(int i=0;i<A->rows;i++){
+        for(int j=0;j<B->rows;j++){
+            setVal(A,i,j,A_val++);
+            setVal(B,i,j,B_val++);
+        }
+    }
+
+    matrix *result1 = mat_elm_multiply(A,B);
+    matrix *result2 = mat_elm_multiply(B,A);
+    TEST_ASSERT_NOT_NULL(result1);
+    TEST_ASSERT_NOT_NULL(result2);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][0],result2->data[0][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][1],result2->data[0][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][2],result2->data[0][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[1][0],result2->data[1][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[1][1],result2->data[1][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[1][2],result2->data[1][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[2][0],result2->data[2][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[2][1],result2->data[2][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[2][2],result2->data[2][2]);
+
+    free_matrix(&A);
+    free_matrix(&B);
+    free_matrix(&result1);
+    free_matrix(&result2);
+}
+
+/*Associative Test for element wise multiplication (Hadamard Product)
+*Ensures that the element wise multiplication function abides by the associative law
+*Expected: A.*(B.*C) = (A.*B).*C
+*/
+void test_hadamard_associative(void){
+    matrix *A = create(3,3);
+    matrix *B = create(3,3);
+    matrix *C = create(3,3);
+
+    double A_val = 1;
+    double B_val = 5;
+    double C_val = 9;
+    for(int i=0;i<A->rows;i++){
+        for(int j=0;j<B->rows;j++){
+            setVal(A,i,j,A_val++);
+            setVal(B,i,j,B_val++);
+            setVal(C,i,j,C_val++);
+        }
+    }
+
+    matrix *result1 = mat_elm_multiply(A,mat_elm_multiply(B,C));
+    matrix *result2 = mat_elm_multiply(mat_elm_multiply(A,B),C);
+    TEST_ASSERT_NOT_NULL(result1);
+    TEST_ASSERT_NOT_NULL(result2);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][0],result2->data[0][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][1],result2->data[0][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][2],result2->data[0][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[1][0],result2->data[1][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[1][1],result2->data[1][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[1][2],result2->data[1][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[2][0],result2->data[2][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[2][1],result2->data[2][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[2][2],result2->data[2][2]);
+
+    free_matrix(&A);
+    free_matrix(&B);
+    free_matrix(&C);
+    free_matrix(&result1);
+    free_matrix(&result2);
+}
+
+/*Distributive Test for element wise multiplication (Hadamard Product)
+*Ensures that the element wise multiplication function abides by the distributive law
+*Expected: A.*(B+C) = A.*B + A.*C
+*/
+void test_hadamard_distributive(void){
+    matrix *A = create(3,3);
+    matrix *B = create(3,3);
+    matrix *C = create(3,3);
+
+    double A_val = 1;
+    double B_val = 5;
+    double C_val = 9;
+    for(int i=0;i<A->rows;i++){
+        for(int j=0;j<B->rows;j++){
+            setVal(A,i,j,A_val++);
+            setVal(B,i,j,B_val++);
+            setVal(C,i,j,C_val++);
+        }
+    }
+
+    matrix *result1 = mat_elm_multiply(A,mat_add(B,C));
+    matrix *result2 = mat_add(mat_elm_multiply(A,B),mat_elm_multiply(A,C));
+    TEST_ASSERT_NOT_NULL(result1);
+    TEST_ASSERT_NOT_NULL(result2);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][0],result2->data[0][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][1],result2->data[0][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][2],result2->data[0][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[1][0],result2->data[1][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[1][1],result2->data[1][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[1][2],result2->data[1][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[2][0],result2->data[2][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[2][1],result2->data[2][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[2][2],result2->data[2][2]);
+
+    free_matrix(&A);
+    free_matrix(&B);
+    free_matrix(&C);
+    free_matrix(&result1);
+    free_matrix(&result2);
+}
+
+/*Identity Test for element wise multiplication (Hadamard Product)
+*Ensures that the element wise multiplication function abides by the hadamard identity law
+*Expected: A.*I = A, where I is the identity matrix
+*/
+void test_hadamard_identity(void){
+    matrix *A = create(3,3);
+    matrix *I = create(3,3);
+
+    double A_val = 1;
+    for(int i=0;i<A->rows;i++){
+        for(int j=0;j<A->cols;j++){
+            setVal(A,i,j,A_val++);
+            setVal(I,i,j,1.0);
+        }
+    }
+
+    matrix *result = mat_elm_multiply(A,I);
+    TEST_ASSERT_NOT_NULL(result);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[0][0],result->data[0][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[0][1],result->data[0][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[0][2],result->data[0][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[1][0],result->data[1][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[1][1],result->data[1][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[1][2],result->data[1][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[2][0],result->data[2][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[2][1],result->data[2][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[2][2],result->data[2][2]);
+
+    free_matrix(&A);
+    free_matrix(&I);
+    free_matrix(&result);
+}
+
+/* Inverse Test for element wise multiplication (Hadamard Product)
+*Ensures that the element wise multiplication function abides by the hadamard inverse law
+*Expected: A.*A^-1 = B, where B is a matrix of ones
+*/
+void test_hadamard_inverse(void){
+    matrix *A = create(3,3);
+    matrix *A_inv = create(3,3);
+
+    double A_val = 1;
+    double A_inv_val = 1;
+    for(int i=0;i<A->rows;i++){
+        for(int j=0;j<A->cols;j++){
+            setVal(A,i,j,A_val++);
+            setVal(A_inv,i,j,(1.0/A_inv_val++));
+        }
+    }
+
+    matrix *result = mat_elm_multiply(A,A_inv);
+    TEST_ASSERT_NOT_NULL(result);
+    TEST_ASSERT_EQUAL_DOUBLE(1.0,result->data[0][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(1.0,result->data[0][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(1.0,result->data[0][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(1.0,result->data[1][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(1.0,result->data[1][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(1.0,result->data[1][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(1.0,result->data[2][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(1.0,result->data[2][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(1.0,result->data[2][2]);
+
+    free_matrix(&A);
+    free_matrix(&A_inv);
+    free_matrix(&result);
+}
+
+/* Zero Test for element wise multiplication (Hadamard Product)
+*Ensures that the element wise multiplication function abides by the hadamard zero law
+*Expected: A.*0 = 0, where 0 is a matrix of zeros
+*/
+void test_hadamard_zero(void){
+    matrix *A = create(3,3);
+    matrix *Z = create(3,3);
+
+    double A_val = 1;
+    for(int i=0;i<A->rows;i++){
+        for(int j=0;j<A->cols;j++){
+            setVal(A,i,j,A_val++);
+            setVal(Z,i,j,0.0);
+        }
+    }
+
+    matrix *result = mat_elm_multiply(A,Z);
+    TEST_ASSERT_NOT_NULL(result);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,result->data[0][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,result->data[0][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,result->data[0][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,result->data[1][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,result->data[1][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,result->data[1][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,result->data[2][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,result->data[2][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,result->data[2][2]);
+
+    free_matrix(&A);
+    free_matrix(&Z);
+    free_matrix(&result);
+}
+
+/* Closure test for element wise multiplication (Hadamard Product)
+* Ensures that the element wise multiplication function abides by the closure law
+*Expected: A.*B = C, where A,B,C are all mxn matrices
+*/
+void test_hadamard_closure(void){
+    matrix *A = create(3,3);
+    matrix *B = create(3,3);
+
+    double A_val = 1;
+    double B_val = 5;
+    for(int i=0;i<A->rows;i++){
+        for(int j=0;j<B->cols;j++){
+            setVal(A,i,j,A_val++);
+            setVal(B,i,j,B_val++);
+        }
+    }
+
+    matrix *result = mat_elm_multiply(A,B);
+    TEST_ASSERT_NOT_NULL(result);
+    TEST_ASSERT_EQUAL_DOUBLE(3,result->rows);
+    TEST_ASSERT_EQUAL_DOUBLE(3,result->cols);
+
+    free_matrix(&A);
+    free_matrix(&B);
+    free_matrix(&result);
+}
+
+/*Comprehensive test for element wise multiplication (Hadamard Product)*/
+void test_hadamard_comprehensive(void){
+    test_hadamard_commutative();
+    test_hadamard_associative();
+    test_hadamard_distributive();
+    test_hadamard_identity();
+    test_hadamard_inverse();
+    test_hadamard_zero();
+    test_hadamard_closure();
+}
+
+/*Non Commutativity test for matrix multiplication
+*Ensures that the matrix multiplication function abides by the non commutative law
+*Expected : AB != BA
+*/
+void test_non_commutative(void){
+    matrix *A = create(3,2);
+    matrix *B = create(2,3);
+
+    double A_val = 1;
+    double B_val = 5;
+    for(int i=0;i<A->rows;i++){
+        for(int j=0;j<A->cols;j++){
+            setVal(A,i,j,A_val++);
+            setVal(B,i,j,B_val++);
+        }
+    }
+
+    matrix *result1 = mat_multiply(A,B);
+    matrix *result2 = mat_multiply(B,A);
+    TEST_ASSERT_NOT_NULL(result1);
+    TEST_ASSERT_NOT_NULL(result2);
+    TEST_ASSERT_NOT_EQUAL(result1->rows,result2->rows);
+
+    free_matrix(&A);
+    free_matrix(&B);
+    free_matrix(&result1);
+    free_matrix(&result2);
+
+}
+
+/*Associativity test for matrix multiplication
+*Ensures that the matrix multiplication function abides by the associative law
+*Expected: A(BC) = (AB)C
+*/
+void test_multiply_associative(void){
+    matrix *A = create(3,3);
+    matrix *B = create(3,3);
+    matrix *C = create(3,3);
+
+    double A_val = 1;
+    double B_val = 5;
+    double C_val = 9;
+    for(int i=0;i<A->rows;i++){
+        for(int j=0;j<B->cols;j++){
+            setVal(A,i,j,A_val++);
+            setVal(B,i,j,B_val++);
+            setVal(C,i,j,C_val++);
+        }
+    }
+
+    matrix *result1 = mat_multiply(A,mat_multiply(B,C));
+    matrix *result2 = mat_multiply(mat_multiply(A,B),C);
+    TEST_ASSERT_NOT_NULL(result1);
+    TEST_ASSERT_NOT_NULL(result2);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][0],result2->data[0][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][1],result2->data[0][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][2],result2->data[0][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[1][0],result2->data[1][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[1][1],result2->data[1][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[1][2],result2->data[1][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[2][0],result2->data[2][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[2][1],result2->data[2][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[2][2],result2->data[2][2]);
+
+    free_matrix(&A);
+    free_matrix(&B);
+    free_matrix(&C);
+    free_matrix(&result1);
+    free_matrix(&result2);
+}
+
+/*Distributive test for matrix multiplication(Over Matrix Addition)
+*Ensures that the matrix multiplication function abides by the distributive law
+*Expected: A(B+C) = AB + AC
+*/
+void test_multiply_distributive(void){
+    matrix *A = create(3,3);
+    matrix *B = create(3,3);
+    matrix *C = create(3,3);
+
+    double A_val = 1;
+    double B_val = 5;
+    double C_val = 9;
+    for(int i=0;i<A->rows;i++){
+        for(int j=0;j<B->cols;j++){
+            setVal(A,i,j,A_val++);
+            setVal(B,i,j,B_val++);
+            setVal(C,i,j,C_val++);
+        }
+    }
+
+    matrix *result1 = mat_multiply(A,mat_add(B,C));
+    matrix *result2 = mat_add(mat_multiply(A,B),mat_multiply(A,C));
+    TEST_ASSERT_NOT_NULL(result1);
+    TEST_ASSERT_NOT_NULL(result2);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][0],result2->data[0][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][1],result2->data[0][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][2],result2->data[0][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[1][0],result2->data[1][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[1][1],result2->data[1][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[1][2],result2->data[1][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[2][0],result2->data[2][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[2][1],result2->data[2][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[2][2],result2->data[2][2]);
+
+    free_matrix(&A);
+    free_matrix(&B);
+    free_matrix(&C);
+    free_matrix(&result1);
+    free_matrix(&result2);
+}
+
+/* Zeros test for matrix multiplication
+*Ensures that the matrix multiplication function abides by the zero law
+*Expected: A0 = 0, where 0 is a matrix of zeros
+*/
+void test_multiply_zero(void){
+    matrix *A = create(3,3);
+    matrix *Z = create(3,3);
+
+    double A_val = 1;
+    for(int i=0;i<A->rows;i++){
+        for(int j=0;j<A->cols;j++){
+            setVal(A,i,j,A_val++);
+            setVal(Z,i,j,0.0);
+        }
+    }
+
+    matrix *result = mat_multiply(A,Z);
+    TEST_ASSERT_NOT_NULL(result);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,result->data[0][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,result->data[0][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,result->data[0][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,result->data[1][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,result->data[1][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,result->data[1][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,result->data[2][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,result->data[2][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,result->data[2][2]);
+
+    free_matrix(&A);
+    free_matrix(&Z);
+    free_matrix(&result);
+}
+
+/*Identity test for matrix multiplication
+*Ensures that the matrix multiplication function abides by the identity law
+*Expected: AI = A, where I is the identity matrix
+*/
+void test_multiply_identity(void){
+    matrix *A = create(3,3);
+    matrix *I = mat_identity(3);
+
+    double A_val = 1;
+    for(int i=0;i<A->rows;i++){
+        for(int j=0;j<A->cols;j++){
+            setVal(A,i,j,A_val++);
+        }
+    }
+
+    matrix *result = mat_multiply(A,I);
+    TEST_ASSERT_NOT_NULL(result);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[0][0],result->data[0][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[0][1],result->data[0][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[0][2],result->data[0][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[1][0],result->data[1][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[1][1],result->data[1][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[1][2],result->data[1][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[2][0],result->data[2][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[2][1],result->data[2][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[2][2],result->data[2][2]);
+
+    free_matrix(&A);
+    free_matrix(&I);
+    free_matrix(&result);
+}
+
+/*Inverse test for matrix multiplication
+*Ensures that the matrix multiplication function abides by the inverse law
+*Expected: AA^-1 = I, where I is the identity matrix
+*/
+void test_multiply_inverse(void){
+    matrix *A = create(2,2);
+    matrix *A_inv = create(2,2);
+
+    setVal(A,0,0,1);
+    setVal(A,0,1,2);
+    setVal(A,1,0,3);
+    setVal(A,1,1,4);
+
+    setVal(A_inv,0,0,-2);
+    setVal(A_inv,0,1,1);
+    setVal(A_inv,1,0,1.5);
+    setVal(A_inv,1,1,-0.5);
+
+    matrix *result = mat_multiply(A,A_inv);
+    TEST_ASSERT_NOT_NULL(result);
+    TEST_ASSERT_EQUAL_DOUBLE(1.0,result->data[0][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,result->data[0][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(0.0,result->data[1][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(1.0,result->data[1][1]);
+    
+
+    free_matrix(&A);
+    free_matrix(&A_inv);
+    free_matrix(&result);
+}
+
+/*Comprehensive test for matrix multiplication*/
+void test_multiply_comprehensive(void){
+    test_non_commutative();
+    test_multiply_associative();
+    test_multiply_distributive();
+    test_multiply_zero();
+    test_multiply_identity();
+    test_multiply_inverse();
+}
+
+/*Double transpose test
+*Ensures transpose function abides by the double transpose law
+*Expected A^T^T = A
+*/
+void test_transpose_double(void){
+    matrix *A = create(3,3);
+
+    double A_val = 1;
+    for(int i=0;i<A->rows;i++){
+        for(int j=0;j<A->cols;j++){
+            setVal(A,i,j,A_val++);
+        }
+    }
+
+    matrix *result = transpose(transpose(A));
+    TEST_ASSERT_NOT_NULL(result);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[0][0],result->data[0][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[0][1],result->data[0][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[0][2],result->data[0][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[1][0],result->data[1][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[1][1],result->data[1][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[1][2],result->data[1][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[2][0],result->data[2][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[2][1],result->data[2][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(A->data[2][2],result->data[2][2]);
+
+    free_matrix(&A);
+    free_matrix(&result);
+}
+
+/* Transpose of a sum test
+*Ensures transpose function abides by the transpose of a sum law
+*Expected: (A+B)^T = A^T + B^T
+*/
+void test_transpose_sum(void){
+    matrix *A = create(2,2);
+    matrix *B = create(2,2);
+
+    double A_val = 1;
+    double B_val = 5;
+    for(int i=0;i<A->rows;i++){
+        for(int j=0;j<B->cols;j++){
+            setVal(A,i,j,A_val++);
+            setVal(B,i,j,B_val++);
+        }
+    }
+
+    matrix *result1  = transpose(mat_add(A,B));
+    matrix *result2 = mat_add(transpose(A),transpose(B));
+    TEST_ASSERT_NOT_NULL(result1);
+    TEST_ASSERT_NOT_NULL(result2);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][0],result2->data[0][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][1],result2->data[0][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[1][0],result2->data[1][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[1][1],result2->data[1][1]);
+
+    free_matrix(&A);
+    free_matrix(&B);
+    free_matrix(&result1);
+    free_matrix(&result2);
+}
+
+/* Transpose of a product test
+*Ensures transpose function abides by the transpose of a product law
+*Expected: (AB)^T = B^T A^T
+*/
+void test_transpose_product(void){
+    matrix *A = create(2,2);
+    matrix *B = create(2,2);
+
+    double A_val = 1;
+    double B_val = 5;
+    for(int i=0;i<A->rows;i++){
+        for(int j=0;j<B->cols;j++){
+            setVal(A,i,j,A_val++);
+            setVal(B,i,j,B_val++);
+        }
+    }
+
+    matrix *result1  = transpose(mat_multiply(A,B));
+    matrix *result2 = mat_multiply(transpose(B),transpose(A));
+    TEST_ASSERT_NOT_NULL(result1);
+    TEST_ASSERT_NOT_NULL(result2);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][0],result2->data[0][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][1],result2->data[0][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[1][0],result2->data[1][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[1][1],result2->data[1][1]);
+
+    free_matrix(&A);
+    free_matrix(&B);
+    free_matrix(&result1);
+    free_matrix(&result2);
+}
+
+/* Scalar multiplication and transpose test
+*Ensures that the scalar multiplication function abides by the scalar multiplication and transpose law
+*Expected: (rA)^T = r(A^T)
+*/
+void test_scalar_transpose(void){
+    matrix *A = create(3,3);
+    double r = 3.0;
+
+    double A_val = 5;
+    for(int i=0;i<A->rows;i++){
+        for(int j=0;j<A->cols;j++){
+            setVal(A,i,j,A_val++);
+        }
+    }
+
+    matrix *result1 = transpose(scalar_multiply(A,r));
+    matrix *result2 = scalar_multiply(transpose(A),r);
+    TEST_ASSERT_NOT_NULL(result1);
+    TEST_ASSERT_NOT_NULL(result2);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][0],result2->data[0][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][1],result2->data[0][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][2],result2->data[0][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[1][0],result2->data[1][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[1][1],result2->data[1][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[1][2],result2->data[1][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[2][0],result2->data[2][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[2][1],result2->data[2][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(result1->data[2][2],result2->data[2][2]);  
+
+    free_matrix(&A);
+    free_matrix(&result1);
+    free_matrix(&result2);
+}
+
+/*Comprehensive test for transpose function*/
+void test_transpose_comprehensive(void){
+    test_transpose_double();
+    test_transpose_sum();
+    test_transpose_product();
+    test_scalar_transpose();
+}
