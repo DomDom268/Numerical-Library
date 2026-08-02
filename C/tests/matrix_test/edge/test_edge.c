@@ -109,3 +109,98 @@ void test_unequal_dimension(void){
     free_matrix(&result4);
 }
 
+/*Infinity handling test for matrix addition, subtraction, scalar multiplication
+*multiplication and element multiplication
+*Expected: All functions to result in infinity due to infinity arithmetic invoved
+*/
+void test_infinity(void){
+    matrix *A = create(2,2);
+    matrix *B = create(2,2);
+
+    double inf = INFINITY;
+    double A_val = 3.0;
+    double B_val = 8.0;
+    
+
+    for(int i=0;i<A->rows;i++){
+        for(int j=0;j<A->cols;j++){
+            if(i==0 && j==0){
+                setVal(A,i,j,inf);
+                setVal(B,i,j,1.0);
+            }else{
+                setVal(A,i,j,A_val++);
+                setVal(B,i,j,B_val++);
+            }
+        }
+    }
+
+    matrix *check1 = mat_add(A,B);
+    matrix *check2 = mat_subtract(B,A);
+    matrix *check3 = scalar_multiply(A,3.0);
+    matrix *check4 = mat_multiply(A,B);
+    matrix *check5 = mat_elm_multiply(A,B);
+
+    TEST_ASSERT_DOUBLE_IS_INF(check1->data[0][0]);
+    TEST_ASSERT_DOUBLE_IS_NEG_INF(check2->data[0][0]);
+    TEST_ASSERT_DOUBLE_IS_INF(check3->data[0][0]);
+    TEST_ASSERT_DOUBLE_IS_INF(check4->data[0][0]);
+    TEST_ASSERT_DOUBLE_IS_INF(check4->data[0][1]);
+    TEST_ASSERT_DOUBLE_IS_INF(check5->data[0][0]);
+
+    free_matrix(&A);
+    free_matrix(&B);
+    free_matrix(&check1);
+    free_matrix(&check2);
+    free_matrix(&check3);
+    free_matrix(&check4);
+    free_matrix(&check5);
+
+}
+
+/*NAN handling test for matrix addition, subtraction, scalar multiplication
+*multiplication and element multiplication
+*Expected: All functions to result in nan due to nan arithmetic involved
+*/
+void test_nan(void){
+    matrix *A = create(2,2);
+    matrix *B = create(2,2);
+
+    double nan = NAN;
+    double A_val = 3.0;
+    double B_val = 8.0;
+    
+
+    for(int i=0;i<A->rows;i++){
+        for(int j=0;j<A->cols;j++){
+            if(i==0 && j==0){
+                setVal(A,i,j,nan);
+                setVal(B,i,j,1.0);
+            }else{
+                setVal(A,i,j,A_val++);
+                setVal(B,i,j,B_val++);
+            }
+        }
+    }
+
+    matrix *check1 = mat_add(A,B);
+    matrix *check2 = mat_subtract(B,A);
+    matrix *check3 = scalar_multiply(A,3.0);
+    matrix *check4 = mat_multiply(A,B);
+    matrix *check5 = mat_elm_multiply(A,B);
+
+    TEST_ASSERT_DOUBLE_IS_NAN(check1->data[0][0]);
+    TEST_ASSERT_DOUBLE_IS_NAN(check2->data[0][0]);
+    TEST_ASSERT_DOUBLE_IS_NAN(check3->data[0][0]);
+    TEST_ASSERT_DOUBLE_IS_NAN(check4->data[0][0]);
+    TEST_ASSERT_DOUBLE_IS_NAN(check4->data[0][1]);
+    TEST_ASSERT_DOUBLE_IS_NAN(check5->data[0][0]);
+
+    free_matrix(&A);
+    free_matrix(&B);
+    free_matrix(&check1);
+    free_matrix(&check2);
+    free_matrix(&check3);
+    free_matrix(&check4);
+    free_matrix(&check5);
+
+}
