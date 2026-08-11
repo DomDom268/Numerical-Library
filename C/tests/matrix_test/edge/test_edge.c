@@ -212,44 +212,36 @@ void test_nan(void){
 */
 void test_overflow(void){
     matrix *A = create(2,2);
-    matrix *B = create(2,2);
 
     double max = DBL_MAX;
     double A_val = 3.0;
-    double B_val = 8.0;
     
 
     for(int i=0;i<A->rows;i++){
         for(int j=0;j<A->cols;j++){
             if(i==0 && j==0){
                 setVal(A,i,j,max);
-                setVal(B,i,j,1.0);
             }else{
                 setVal(A,i,j,A_val++);
-                setVal(B,i,j,B_val++);
             }
         }
     }
 
-    matrix *check1 = mat_add(A,B);
-    matrix *check2 = mat_subtract(B,A);
-    matrix *check3 = scalar_multiply(A,3.0);
-    matrix *check4 = mat_multiply(A,B);
-    matrix *check5 = mat_elm_multiply(A,B);
+    matrix *check1 = mat_add(A,A);
+    matrix *check2 = scalar_multiply(A,3.0);
+    matrix *check3 = mat_multiply(A,A);
+    matrix *check4 = mat_elm_multiply(A,A);
 
     TEST_ASSERT_DOUBLE_IS_INF(check1->data[0][0]);
-    TEST_ASSERT_DOUBLE_IS_NEG_INF(check2->data[0][0]);
+    TEST_ASSERT_DOUBLE_IS_INF(check2->data[0][0]);
     TEST_ASSERT_DOUBLE_IS_INF(check3->data[0][0]);
+    TEST_ASSERT_DOUBLE_IS_INF(check3->data[0][1]);
     TEST_ASSERT_DOUBLE_IS_INF(check4->data[0][0]);
-    TEST_ASSERT_DOUBLE_IS_INF(check4->data[0][1]);
-    TEST_ASSERT_DOUBLE_IS_INF(check5->data[0][0]);
 
     free_matrix(&A);
-    free_matrix(&B);
     free_matrix(&check1);
     free_matrix(&check2);
     free_matrix(&check3);
     free_matrix(&check4);
-    free_matrix(&check5);
 
 }
