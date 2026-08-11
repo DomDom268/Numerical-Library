@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <float.h>
 #define UNITY_INCLUDE_DOUBLE
 #include "unity.h"
 #include "matrix.h"
@@ -32,7 +33,7 @@ void test_create_invalid(void){
     TEST_ASSERT_NULL(B);
     TEST_ASSERT_NULL(C);
     TEST_ASSERT_NULL(D);
-    TEST_ASSERT_NULL(&E);
+    TEST_ASSERT_NULL(E);
 
     free_matrix(&A);
     free_matrix(&B);
@@ -49,8 +50,8 @@ void test_create_singular(void){
     matrix *A = create(1,1);
     matrix *B = mat_identity(1);
 
-    TEST_ASSERT_NULL(A);
-    TEST_ASSERT_NULL(B);
+    TEST_ASSERT_NOT_NULL(A);
+    TEST_ASSERT_NOT_NULL(B);
 
     free_matrix(&A);
     free_matrix(&B);
@@ -194,6 +195,54 @@ void test_nan(void){
     TEST_ASSERT_DOUBLE_IS_NAN(check4->data[0][0]);
     TEST_ASSERT_DOUBLE_IS_NAN(check4->data[0][1]);
     TEST_ASSERT_DOUBLE_IS_NAN(check5->data[0][0]);
+
+    free_matrix(&A);
+    free_matrix(&B);
+    free_matrix(&check1);
+    free_matrix(&check2);
+    free_matrix(&check3);
+    free_matrix(&check4);
+    free_matrix(&check5);
+
+}
+
+/*Overflow test for matrix addition, subtraction, scalar multiplication
+*multiplication and element multiplication
+*Expected: All functions to overflow with DBL_MAX as one of the entries
+*/
+void test_overflow(void){
+    matrix *A = create(2,2);
+    matrix *B = create(2,2);
+
+    double max = DBL_MAX;
+    double A_val = 3.0;
+    double B_val = 8.0;
+    
+
+    for(int i=0;i<A->rows;i++){
+        for(int j=0;j<A->cols;j++){
+            if(i==0 && j==0){
+                setVal(A,i,j,max);
+                setVal(B,i,j,1.0);
+            }else{
+                setVal(A,i,j,A_val++);
+                setVal(B,i,j,B_val++);
+            }
+        }
+    }
+
+    matrix *check1 = mat_add(A,B);
+    matrix *check2 = mat_subtract(B,A);
+    matrix *check3 = scalar_multiply(A,3.0);
+    matrix *check4 = mat_multiply(A,B);
+    matrix *check5 = mat_elm_multiply(A,B);
+
+    TEST_ASSERT_DOUBLE_IS_INF(check1->data[0][0]);
+    TEST_ASSERT_DOUBLE_IS_NEG_INF(check2->data[0][0]);
+    TEST_ASSERT_DOUBLE_IS_INF(check3->data[0][0]);
+    TEST_ASSERT_DOUBLE_IS_INF(check4->data[0][0]);
+    TEST_ASSERT_DOUBLE_IS_INF(check4->data[0][1]);
+    TEST_ASSERT_DOUBLE_IS_INF(check5->data[0][0]);
 
     free_matrix(&A);
     free_matrix(&B);

@@ -12,10 +12,10 @@ typedef struct {
 // function to create matrix with given dimensions by allocating memory for the row pointers and for each row
 matrix *create(int rows, int cols) {
     if (rows<=0 || cols<=0 ){
-        printf("Error: Matrix must have dimension greater than 0x0");
+        printf("Error: Matrix rows or cols must be greater than 0");
         return NULL;
     }
-
+    
     int size = rows * cols;
     matrix *m = malloc(sizeof(matrix));
     m->rows = rows;

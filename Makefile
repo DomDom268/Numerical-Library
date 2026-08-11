@@ -15,6 +15,7 @@ include makefiles/Vector/normbench.mk
 include makefiles/Vector/comprehensive.mk
 include makefiles/Matrix/basic.mk
 include makefiles/Matrix/math.mk
+include makefiles/Matrix/edge.mk
 
 clean:
 	rm -f *.exe
