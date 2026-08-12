@@ -12,7 +12,7 @@ TEST_SRC = C/tests/vector_test/basic/test_basic.c C/tests/vector_test/basic/test
 TARGET = asan_test
 
 asan:
-	$(CC) $(SRC) $(TEST_SRC) $(CFLAGS) $(ASAN_FLAGS) -o $(TARGET)
+	$(CC) $(SRC) $(TEST_SRC) $(CFLAGS) -lm $(ASAN_FLAGS) -o $(TARGET)
 
 asan_run:
 	./$(TARGET)
