@@ -32,8 +32,10 @@ void test_add_associativity(void){
         setVal_v(c,i,i+7.0); // c = [7,8,9]
     }
 
-    vector *result1 = add_v((add_v(a,b)),c);
-    vector *result2 = add_v(a,add_v(b,c));
+    vector *temp1 = add_v(a,b);
+    vector *temp2 = add_v(b,c);
+    vector *result1 = add_v(temp1,c);
+    vector *result2 = add_v(a,temp2);
     
     TEST_ASSERT_NOT_NULL(result1);
     TEST_ASSERT_NOT_NULL(result2);
@@ -44,6 +46,8 @@ void test_add_associativity(void){
     free_v(&a);
     free_v(&b);
     free_v(&c);
+    free_v(&temp1);
+    free_v(&temp2);
     free_v(&result1);
     free_v(&result2);
 }
