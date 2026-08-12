@@ -125,6 +125,8 @@ void test_incorrect_dimension(void){
 
     free_v(&a);
     free_v(&b);
+    free_v(&check1);
+    free_v(&check2);
 }
 
 /*Infinity handling test for addition, subtraction, dot product
@@ -259,6 +261,7 @@ void test_underflow(void){
 
     free_v(&a);
     free_v(&b);
+    free_v(&check2);
     
 }
 
