@@ -58,7 +58,7 @@ void test_create_singular(void){
     TEST_ASSERT_NOT_NULL(c);
 
     free_v(&a);
-    free_v(&a);
+    free_v(&b);
     free_v(&c);
 }
 
