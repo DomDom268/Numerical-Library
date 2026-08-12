@@ -19,16 +19,16 @@ BENCH_TESTS = C/tests/vector_test/benchmark/test_benchmark.c C/tests/vector_test
 
 #Build each test suite with ASAN enabled
 asan_basic:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(BASIC_TESTS) -o asan_basic
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(BASIC_TESTS) -o asan_basic -lm
 
 asan_edge:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(EDGE_TESTS) -o asan_edge
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(EDGE_TESTS) -o asan_edge -lm
 
 asan_math:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(MATH_TESTS) -o asan_math
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(MATH_TESTS) -o asan_math -lm
 
 asan_bench:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) -lm $(BENCH_TESTS) -o asan_bench
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(BENCH_TESTS) -o asan_bench -lm
 
 #Run all test suites with ASAN enabled
 asan_all: asan_basic asan_edge asan_math asan_bench
