@@ -28,7 +28,7 @@ asan_math:
 	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(MATH_TESTS) -o asan_math
 
 asan_bench:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(BENCH_TESTS) -o asan_bench
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) -lm $(BENCH_TESTS) -o asan_bench
 
 #Run all test suites with ASAN enabled
 asan_all: asan_basic asan_edge asan_math asan_bench
