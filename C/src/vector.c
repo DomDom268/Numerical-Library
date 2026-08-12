@@ -33,7 +33,7 @@ void free_v(vector **v){
 
     free((*v)->data);
     free(*v);
-    free(v);
+    // free(v);
     *v = NULL;
     
 }
