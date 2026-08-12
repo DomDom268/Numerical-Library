@@ -188,7 +188,8 @@ void test_dot_distributive(void){
         setVal_v(c,i,i+7.0); // c = [7,8,9]
     }
 
-    double result1 = dot_v(a,add_v(b,c));
+    vector *temp1 = add_v(b,c);
+    double result1 = dot_v(a,temp1);
     double result2 = dot_v(a,b) + dot_v(a,c);
 
     TEST_ASSERT_NOT_EQUAL(-1,result1);
@@ -198,6 +199,7 @@ void test_dot_distributive(void){
     free_v(&a);
     free_v(&b);
     free_v(&c);
+    free_v(&temp1);
     
 }
 
@@ -216,7 +218,8 @@ void test_dot_scalar(void){
         setVal_v(b,i,i+4.0); // b = [4,5,6]
     }
     
-    double result1 = dot_v(a,scale_v(b,k));
+    vector *temp1 = scale_v(b,k);
+    double result1 = dot_v(a,temp1);
     double result2 = k * (dot_v(a,b));
 
     TEST_ASSERT_NOT_EQUAL(-1,result1);
@@ -225,6 +228,7 @@ void test_dot_scalar(void){
 
     free_v(&a);
     free_v(&b);
+    free_v(&temp1);
     
 }
 
@@ -305,9 +309,11 @@ void test_scalar_distributivity_vector(void){
         setVal_v(a,i,i+1.0); // a = [1,2,3]
         setVal_v(b,i,i+4.0); // b = [4,5,6]
     }
-
-    vector *result1 = scale_v(add_v(a,b),k);
-    vector *result2 = add_v(scale_v(a,k),scale_v(b,k));
+    vector *temp1 = add_v(a,b);
+    vector *temp2 = scale_v(a,k);
+    vector *temp3 = scale_v(b,k);
+    vector *result1 = scale_v(temp1,k);
+    vector *result2 = add_v(temp2,temp3);
 
     TEST_ASSERT_NOT_NULL(result1);
     TEST_ASSERT_NOT_NULL(result2);
@@ -317,6 +323,9 @@ void test_scalar_distributivity_vector(void){
 
     free_v(&a);
     free_v(&b);
+    free_v(&temp1);
+    free_v(&temp2);
+    free_v(&temp3);
     free_v(&result1);
     free_v(&result2);
 }
@@ -335,8 +344,10 @@ void test_scalar_distributivity_scalar(void){
         setVal_v(a,i,i+1.0); // a = [1,2,3]
     }
 
+    vector *temp1 = scale_v(a,k);
+    vector *temp2 = scale_v(a,m);
     vector *result1 = scale_v(a,(k+m));
-    vector *result2 = add_v(scale_v(a,k),scale_v(a,m));
+    vector *result2 = add_v(temp1,temp2);
 
     TEST_ASSERT_NOT_NULL(result1);
     TEST_ASSERT_NOT_NULL(result2);
@@ -345,6 +356,8 @@ void test_scalar_distributivity_scalar(void){
     TEST_ASSERT_DOUBLE_WITHIN(1e-6,result1->data[2],result2->data[2]);
 
     free_v(&a);
+    free_v(&temp1);
+    free_v(&temp2);
     free_v(&result1);
     free_v(&result2);
 }
