@@ -14,8 +14,18 @@ EDGE_TESTS = C/tests/vector_test/edge/test_edge.c C/tests/vector_test/edge/test_
 
 MATH_TESTS = C/tests/vector_test/mathematical/test_math.c C/tests/vector_test/mathematical/test_math_runner.c
 
-BENCH_TESTS = C/src/benchmark.c
-
+ADD_BENCH_TESTS = C/tests/vector_test/benchmarks/add_bench.c
+SUB_BENCH_TESTS = C/tests/vector_test/benchmarks/sub_bench.c
+SCALE_BENCH_TESTS = C/tests/vector_test/benchmarks/scale_bench.c
+SETVAL_BENCH_TESTS = C/tests/vector_test/benchmarks/setval_bench.c
+PRINT_BENCH_TESTS = C/tests/vector_test/benchmarks/print_bench.c
+NORMDIST_BENCH_TESTS = C/tests/vector_test/benchmarks/normdist_bench.c
+MANNORM_BENCH_TESTS = C/tests/vector_test/benchmarks/mannorm_bench.c
+EUCNORM_BENCH_TESTS = C/tests/vector_test/benchmarks/eucnorm_bench.c
+EUCDIST_BENCH_TESTS = C/tests/vector_test/benchmarks/eucdist_bench.c
+DOT_BENCH_TESTS = C/tests/vector_test/benchmarks/dot_bench.c
+CREATE_BENCH_TESTS = C/tests/vector_test/benchmarks/create_bench.c
+COMPREHENSIVE_BENCH_TESTS = C/tests/vector_test/benchmarks/comprehensive_bench.c
 
 #Build each test suite with ASAN enabled
 asan_basic:
@@ -27,11 +37,34 @@ asan_edge:
 asan_math:
 	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(MATH_TESTS) -o asan_math -lm
 
-asan_bench:
-	gcc -IC/include -DUNITY_INCLUDE_DOUBLE $(ASAN_FLAGS) C/src/vector.c C/src/benchmark.c C/tests/vector_test/benchmarks/*-o asan_bench -lm
+asan_add_bench:
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(ADD_BENCH_TESTS) -o asan_add_bench -lm
+asan_sub_bench:
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(SUB_BENCH_TESTS) -o asan_sub_bench -lm
+asan_scale_bench:
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(SCALE_BENCH_TESTS) -o asan_scale_bench -lm
+asan_setval_bench:
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(SETVAL_BENCH_TESTS) -o asan_setval_bench -lm
+asan_print_bench:
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(PRINT_BENCH_TESTS) -o asan_print_bench -lm
+asan_normdist_bench:
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(NORMDIST_BENCH_TESTS) -o asan_normdist_bench -lm
+asan_mannorm_bench:
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(MANNORM_BENCH_TESTS) -o asan_mannorm_bench -lm
+asan_eucnorm_bench:
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(EUCNORM_BENCH_TESTS) -o asan_eucnorm_bench -lm
+asan_eucdist_bench:
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(EUCDIST_BENCH_TESTS) -o asan_eucdist_bench -lm
+asan_dot_bench:
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(DOT_BENCH_TESTS) -o asan_dot_bench -lm
+asan_create_bench:
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(CREATE_BENCH_TESTS) -o asan_create_bench -lm
+asan_comprehensive_bench:
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(COMPREHENSIVE_BENCH_TESTS) -o asan_comprehensive_bench -lm
 
-#Run all test suites with ASAN enabled
-asan_all: asan_basic asan_edge asan_math asan_bench
+asan_bench:asan_add_bench asan_sub_bench asan_scale_bench asan_setval_bench asan_print_bench asan_normdist_bench asan_mannorm_bench asan_eucnorm_bench asan_eucdist_bench asan_dot_bench asan_create_bench asan_comprehensive_bench
+
+asan_all:asan_basic asan_edge asan_math asan_bench
 	./asan_basic
 	./asan_edge
 	./asan_math
