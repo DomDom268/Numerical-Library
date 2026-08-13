@@ -65,9 +65,21 @@ asan_comprehensive_bench:
 	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(BENCH_SRC) $(COMPREHENSIVE_BENCH_TESTS) -o asan_comprehensive_bench -lm
 
 asan_bench:asan_add_bench asan_sub_bench asan_scale_bench asan_setval_bench asan_print_bench asan_normdist_bench asan_mannorm_bench asan_eucnorm_bench asan_eucdist_bench asan_dot_bench asan_create_bench asan_comprehensive_bench
+	./asan_add_bench
+	./asan_sub_bench
+	./asan_scale_bench
+	./asan_setval_bench
+	./asan_print_bench
+	./asan_normdist_bench
+	./asan_mannorm_bench
+	./asan_eucnorm_bench
+	./asan_eucdist_bench
+	./asan_dot_bench
+	./asan_create_bench
+	./asan_comprehensive_bench
 
-asan_all:asan_basic asan_edge asan_math asan_bench
+asan_all:asan_basic asan_edge asan_math 
 	./asan_basic
 	./asan_edge
 	./asan_math
-	./asan_bench
+	
