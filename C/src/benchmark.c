@@ -116,12 +116,13 @@ BenchResults bench_add(int trials, int size){
 
         clock_t start = clock();
 
-        add_v(a,b);
+        vector *result = add_v(a,b);
 
         clock_t end = clock();
 
         free_v(&a);
         free_v(&b);
+        free_v(&result);
         
         trial_time = ((double)(end - start) * 1e9) / CLOCKS_PER_SEC;
         
@@ -168,12 +169,13 @@ BenchResults bench_sub(int trials, int size){
 
         clock_t start = clock();
 
-        subtract_v(a,b);
+        vector *result = subtract_v(a,b);
 
         clock_t end = clock();
 
         free_v(&a);
         free_v(&b);
+        free_v(&result);
         
         trial_time = ((double)(end - start) * 1e9) / CLOCKS_PER_SEC;
         
@@ -220,7 +222,7 @@ BenchResults bench_dot(int trials, int size){
 
         clock_t start = clock();
 
-        dot_v(a,b);
+        double result = dot_v(a,b);
 
         clock_t end = clock();
 
