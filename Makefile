@@ -17,6 +17,7 @@ include makefiles/Matrix/basic.mk
 include makefiles/Matrix/math.mk
 include makefiles/Matrix/edge.mk
 include makefiles/Vector/asan.mk
+include makefiles/Vector/ubsan.mk
 
 clean:
 	rm -f *.exe
