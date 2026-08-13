@@ -40,29 +40,29 @@ asan_math:
 	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(MATH_TESTS) -o asan_math -lm
 
 asan_add_bench:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(ADD_BENCH_TESTS) -o asan_add_bench -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(BENCH_SRC) $(ADD_BENCH_TESTS) -o asan_add_bench -lm
 asan_sub_bench:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(SUB_BENCH_TESTS) -o asan_sub_bench -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(BENCH_SRC) $(SUB_BENCH_TESTS) -o asan_sub_bench -lm
 asan_scale_bench:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(SCALE_BENCH_TESTS) -o asan_scale_bench -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(BENCH_SRC) $(SCALE_BENCH_TESTS) -o asan_scale_bench -lm
 asan_setval_bench:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(SETVAL_BENCH_TESTS) -o asan_setval_bench -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(BENCH_SRC) $(SETVAL_BENCH_TESTS) -o asan_setval_bench -lm
 asan_print_bench:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(PRINT_BENCH_TESTS) -o asan_print_bench -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(BENCH_SRC) $(PRINT_BENCH_TESTS) -o asan_print_bench -lm
 asan_normdist_bench:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(NORMDIST_BENCH_TESTS) -o asan_normdist_bench -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(BENCH_SRC) $(NORMDIST_BENCH_TESTS) -o asan_normdist_bench -lm
 asan_mannorm_bench:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(MANNORM_BENCH_TESTS) -o asan_mannorm_bench -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(BENCH_SRC) $(MANNORM_BENCH_TESTS) -o asan_mannorm_bench -lm
 asan_eucnorm_bench:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(EUCNORM_BENCH_TESTS) -o asan_eucnorm_bench -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(BENCH_SRC) $(EUCNORM_BENCH_TESTS) -o asan_eucnorm_bench -lm
 asan_eucdist_bench:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(EUCDIST_BENCH_TESTS) -o asan_eucdist_bench -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(BENCH_SRC) $(EUCDIST_BENCH_TESTS) -o asan_eucdist_bench -lm
 asan_dot_bench:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(DOT_BENCH_TESTS) -o asan_dot_bench -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(BENCH_SRC) $(DOT_BENCH_TESTS) -o asan_dot_bench -lm
 asan_create_bench:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(CREATE_BENCH_TESTS) -o asan_create_bench -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(BENCH_SRC) $(CREATE_BENCH_TESTS) -o asan_create_bench -lm
 asan_comprehensive_bench:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(COMPREHENSIVE_BENCH_TESTS) -o asan_comprehensive_bench -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(BENCH_SRC) $(COMPREHENSIVE_BENCH_TESTS) -o asan_comprehensive_bench -lm
 
 asan_bench:asan_add_bench asan_sub_bench asan_scale_bench asan_setval_bench asan_print_bench asan_normdist_bench asan_mannorm_bench asan_eucnorm_bench asan_eucdist_bench asan_dot_bench asan_create_bench asan_comprehensive_bench
 
