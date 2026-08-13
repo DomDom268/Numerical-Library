@@ -1,7 +1,18 @@
+/**
+ * @file vector.h
+ * @author Dominic Christopher
+ * @brief A header file for vector operations. Including functions for creating, manipulating, and performing operations on vectors.
+ * 
+ */
+
 #ifndef VECTOR_H
 #define VECTOR_H
 #pragma once
 #include <stddef.h>
+
+/** 
+ * @brief A structure representing a vector. Includes the number of rows and a pointer to the data array.
+ */
 
 typedef struct {
     int rows;
