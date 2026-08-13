@@ -28,7 +28,7 @@ asan_math:
 	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(MATH_TESTS) -o asan_math -lm
 
 asan_bench:
-	gcc -IC/include -DUNITY_INCLUDE_DOUBLE $(ASAN_FLAGS) C/src/benchmark.c -o asan_bench -lm
+	gcc -IC/include -DUNITY_INCLUDE_DOUBLE $(ASAN_FLAGS) C/src/vector.c C/src/benchmark.c -o asan_bench -lm
 
 #Run all test suites with ASAN enabled
 asan_all: asan_basic asan_edge asan_math asan_bench
