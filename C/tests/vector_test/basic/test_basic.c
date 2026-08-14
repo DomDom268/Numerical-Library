@@ -1,3 +1,8 @@
+/**
+ * @file test_basic.c
+ * @brief Basic unit test for vector operations using the Unity framework. Ensures basic correctness of vector creation, manipulation, and mathematical operations.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>

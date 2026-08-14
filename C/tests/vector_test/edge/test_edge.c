@@ -1,3 +1,10 @@
+/**
+ * @file test_edge.c
+ * @brief Edge case unit test for vector operations using the Unity framework. Ensures that the vector library handles edge cases such as invalid inputs, singular vectors, and extreme values correctly.   
+ */
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>

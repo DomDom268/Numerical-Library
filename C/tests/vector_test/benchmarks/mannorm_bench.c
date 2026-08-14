@@ -1,3 +1,8 @@
+/**
+ * @file mannorm_bench.c
+ * @brief This file contains the main function to benchmark the vector Manhattan norm operation. It runs a specified number of trials for computing Manhattan norms of vectors of a given size and records the maximum, minimum, and average execution times. The results are printed to the console and written to a CSV file for further analysis.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>

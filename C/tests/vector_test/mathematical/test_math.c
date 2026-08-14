@@ -1,3 +1,9 @@
+/**
+ * @file test_math.c
+ * @brief This file contains unit tests for mathematical properties of vector operations. Ensures all operations adhere to mathematical principles.
+ */
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
