@@ -86,11 +86,27 @@ vector *scale_v(vector *v, double scalar);
  */
 double euclidean_distance(vector *v1, vector *v2);
 /**
+ * @brief Computes the distance between two vectors using the Manhattan norm.
+ * @param v1 A pointer to the first vector.
+ * @param v2 A pointer to the second vector.
+ * @return The Manhattan distance between the two vectors.
+ */
+double norm_distance(vector *v1, vector *v2);
+
+/**
+ * @brief Computes the euclidean norm (L2 norm) of a vector.
+ * @param v A pointer to the vector.
+ * @return The euclidean norm of the vector.
+ */
+double euclidean_norm(vector *v);
+
+/**
  * @brief Computes the Manhattan norm of a vector.
  * @param v A pointer to the vector.
-* @return The Manhattan norm of the vector.
-*/
-double norm_distance(vector *v1, vector *v2);
+ * @return The Manhattan norm of the vector.
+ */
+double manhattan_norm(vector *v);
+
 /**
  * @brief Creates a vector filled with zeros.
  * @param size The number of rows in the vector.
