@@ -8,7 +8,7 @@
 #include <math.h>
 #define UNITY_INCLUDE_DOUBLE
 #include "unity.h"
-#include "vector.h"
+#include "Vector/vector.h"
 
 
 #pragma message("Compiling test_basic.c")

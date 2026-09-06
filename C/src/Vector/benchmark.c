@@ -3,7 +3,7 @@
 #include <math.h>
 #include <time.h>
 #include "benchmark.h"
-#include "vector.h"
+#include "Vector/vector.h"
 
 /*functiont that returns benchmark results for create_v*/
 BenchResults bench_create( int trials, int size){

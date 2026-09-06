@@ -3,7 +3,7 @@
 #include <math.h>
 #define UNITY_INCLUDE_DOUBLE
 #include "unity.h"
-#include "vector.h"
+#include "Vector/vector.h"
 
 extern void test_create_basic(void);
 extern void test_free_basic(void);

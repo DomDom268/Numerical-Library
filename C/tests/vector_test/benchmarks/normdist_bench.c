@@ -8,7 +8,7 @@
 #include <math.h>
 #include <time.h>
 #include "benchmark.h"
-#include "vector.h"
+#include "Vector/vector.h"
 
 
 int main(void){

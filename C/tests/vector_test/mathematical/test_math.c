@@ -9,7 +9,7 @@
 #include <math.h>
 #define UNITY_INCLUDE_DOUBLE
 #include "unity.h"
-#include "vector.h"
+#include "Vector/vector.h"
 
 void setUp(void)
 {

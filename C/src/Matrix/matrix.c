@@ -1,6 +1,7 @@
 // this C file implements a matrix struct and fundamental matrix operations
 #include <stdio.h>
 #include <stdlib.h>
+#include "Matrix/matrix.h"
 
 typedef struct {
     int rows;
