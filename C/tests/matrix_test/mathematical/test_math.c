@@ -75,9 +75,10 @@ void test_add_associative(void){
             setVal(C,i,j,C_val++);
         }
     }
-
-    matrix *result1 = mat_add(A,mat_add(B,C));
-    matrix *result2  = mat_add(mat_add(A,B),C);
+    matrix *temp1 = mat_add(B,C);
+    matrix *temp2 = mat_add(A,B);
+    matrix *result1 = mat_add(A,temp1);
+    matrix *result2  = mat_add(temp2,C);
     TEST_ASSERT_NOT_NULL(result1);
     TEST_ASSERT_NOT_NULL(result2);
     TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][0],result2->data[0][0]);
@@ -93,6 +94,8 @@ void test_add_associative(void){
     free_matrix(&A);
     free_matrix(&B);
     free_matrix(&C);
+    free_matrix(&temp1);
+    free_matrix(&temp2);
     free_matrix(&result1);
     free_matrix(&result2);
 
@@ -220,7 +223,8 @@ void test_scalar_associative(void){
         }
     }
 
-    matrix *result1 = scalar_multiply(scalar_multiply(A,s),r);
+    matrix *temp1 = scalar_multiply(A,s);
+    matrix *result1 = scalar_multiply(temp1,r);
     matrix *result2 = scalar_multiply(A,(r*s));
     TEST_ASSERT_NOT_NULL(result1);
     TEST_ASSERT_NOT_NULL(result2);
@@ -235,6 +239,7 @@ void test_scalar_associative(void){
     TEST_ASSERT_EQUAL_DOUBLE(result1->data[2][2],result2->data[2][2]);
 
     free_matrix(&A);
+    free_matrix(&temp1);
     free_matrix(&result1);
     free_matrix(&result2);
 
@@ -259,9 +264,12 @@ void test_distributive_matrix_multiplication(void){
         }
     }
 
-    matrix *result1 = scalar_multiply(mat_multiply(A,B),r);
-    matrix *result2 = mat_multiply(scalar_multiply(A,r),B);
-    matrix *result3 = mat_multiply(A,scalar_multiply(B,r));
+    matrix *temp1 = mat_multiply(A,B);
+    matrix *temp2 = scalar_multiply(A,r);
+    matrix *temp3 = scalar_multiply(B,r);
+    matrix *result1 = scalar_multiply(temp1,r);
+    matrix *result2 = mat_multiply(temp2,B);
+    matrix *result3 = mat_multiply(A,temp3);
     TEST_ASSERT_NOT_NULL(result1);
     TEST_ASSERT_NOT_NULL(result2);
     TEST_ASSERT_NOT_NULL(result3);
@@ -301,6 +309,9 @@ void test_distributive_matrix_multiplication(void){
 
     free_matrix(&A);
     free_matrix(&B);
+    free_matrix(&temp1);
+    free_matrix(&temp2);
+    free_matrix(&temp3);
     free_matrix(&result1);
     free_matrix(&result2);
     free_matrix(&result3);
@@ -323,8 +334,10 @@ void test_distributive_scalar_addition(void){
         }
     }
 
+    matrix *temp1 = scalar_multiply(A,s);
+    matrix *temp2 = scalar_multiply(A,r);
     matrix *result1 = scalar_multiply(A,(r+s));
-    matrix *result2 = mat_add(scalar_multiply(A,s),scalar_multiply(A,r));
+    matrix *result2 = mat_add(temp1,temp2);
     TEST_ASSERT_NOT_NULL(result1);
     TEST_ASSERT_NOT_NULL(result2);
     TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][0],result2->data[0][0]);
@@ -338,6 +351,8 @@ void test_distributive_scalar_addition(void){
     TEST_ASSERT_EQUAL_DOUBLE(result1->data[2][2],result2->data[2][2]);
 
     free_matrix(&A);
+    free_matrix(&temp1);
+    free_matrix(&temp2);
     free_matrix(&result1);
     free_matrix(&result2);
 
@@ -361,8 +376,11 @@ void test_distributive_matrix_addition(void){
         }
     }
 
-    matrix *result1 = scalar_multiply(mat_add(A,B),r);
-    matrix *result2 = mat_add(scalar_multiply(A,r),scalar_multiply(B,r));
+    matrix *temp1 = mat_add(A,B);
+    matrix *temp2 = scalar_multiply(A,r);
+    matrix *temp3 = scalar_multiply(B,r);
+    matrix *result1 = scalar_multiply(temp1,r);
+    matrix *result2 = mat_add(temp2,temp3);
     TEST_ASSERT_NOT_NULL(result1);
     TEST_ASSERT_NOT_NULL(result2);
     TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][0],result2->data[0][0]);
@@ -377,6 +395,9 @@ void test_distributive_matrix_addition(void){
 
     free_matrix(&A);
     free_matrix(&B);
+    free_matrix(&temp1);
+    free_matrix(&temp2);
+    free_matrix(&temp3);
     free_matrix(&result1);
     free_matrix(&result2);
 
@@ -537,8 +558,10 @@ void test_hadamard_associative(void){
         }
     }
 
-    matrix *result1 = mat_elm_multiply(A,mat_elm_multiply(B,C));
-    matrix *result2 = mat_elm_multiply(mat_elm_multiply(A,B),C);
+    matrix *temp1 = mat_elm_multiply(B,C);
+    matrix *temp2 = mat_elm_multiply(A,B);
+    matrix *result1 = mat_elm_multiply(A,temp1);
+    matrix *result2 = mat_elm_multiply(temp2,C);
     TEST_ASSERT_NOT_NULL(result1);
     TEST_ASSERT_NOT_NULL(result2);
     TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][0],result2->data[0][0]);
@@ -554,6 +577,8 @@ void test_hadamard_associative(void){
     free_matrix(&A);
     free_matrix(&B);
     free_matrix(&C);
+    free_matrix(&temp1);
+    free_matrix(&temp2);
     free_matrix(&result1);
     free_matrix(&result2);
 }
@@ -578,8 +603,11 @@ void test_hadamard_distributive(void){
         }
     }
 
-    matrix *result1 = mat_elm_multiply(A,mat_add(B,C));
-    matrix *result2 = mat_add(mat_elm_multiply(A,B),mat_elm_multiply(A,C));
+    matrix *temp1 = mat_add(B,C);
+    matrix *temp2 = mat_elm_multiply(A,B);
+    matrix *temp3 = mat_elm_multiply(A,C);
+    matrix *result1 = mat_elm_multiply(A,temp1);
+    matrix *result2 = mat_add(temp2,temp2);
     TEST_ASSERT_NOT_NULL(result1);
     TEST_ASSERT_NOT_NULL(result2);
     TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][0],result2->data[0][0]);
@@ -595,6 +623,9 @@ void test_hadamard_distributive(void){
     free_matrix(&A);
     free_matrix(&B);
     free_matrix(&C);
+    free_matrix(&temp1);
+    free_matrix(&temp2);
+    free_matrix(&temp3);
     free_matrix(&result1);
     free_matrix(&result2);
 }
@@ -787,8 +818,10 @@ void test_multiply_associative(void){
         }
     }
 
-    matrix *result1 = mat_multiply(A,mat_multiply(B,C));
-    matrix *result2 = mat_multiply(mat_multiply(A,B),C);
+    matrix *temp1 = mat_multiply(B,C);
+    matrix *temp2 = mat_multiply(A,B);
+    matrix *result1 = mat_multiply(A,temp1);
+    matrix *result2 = mat_multiply(temp2,C);
     TEST_ASSERT_NOT_NULL(result1);
     TEST_ASSERT_NOT_NULL(result2);
     TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][0],result2->data[0][0]);
@@ -804,6 +837,8 @@ void test_multiply_associative(void){
     free_matrix(&A);
     free_matrix(&B);
     free_matrix(&C);
+    free_matrix(&temp1);
+    free_matrix(&temp2);
     free_matrix(&result1);
     free_matrix(&result2);
 }
@@ -828,8 +863,11 @@ void test_multiply_distributive(void){
         }
     }
 
-    matrix *result1 = mat_multiply(A,mat_add(B,C));
-    matrix *result2 = mat_add(mat_multiply(A,B),mat_multiply(A,C));
+    matrix *temp1 = mat_add(B,C);
+    matrix *temp2 = mat_multiply(A,B);
+    matrix *temp3 = mat_multiply(A,C);
+    matrix *result1 = mat_multiply(A,temp1);
+    matrix *result2 = mat_add(temp2,temp3);
     TEST_ASSERT_NOT_NULL(result1);
     TEST_ASSERT_NOT_NULL(result2);
     TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][0],result2->data[0][0]);
@@ -845,6 +883,9 @@ void test_multiply_distributive(void){
     free_matrix(&A);
     free_matrix(&B);
     free_matrix(&C);
+    free_matrix(&temp1);
+    free_matrix(&temp2);
+    free_matrix(&temp3);
     free_matrix(&result1);
     free_matrix(&result2);
 }
@@ -969,7 +1010,8 @@ void test_transpose_double(void){
         }
     }
 
-    matrix *result = transpose(transpose(A));
+    matrix *temp1 = transpose(A);
+    matrix *result = transpose(temp1);
     TEST_ASSERT_NOT_NULL(result);
     TEST_ASSERT_EQUAL_DOUBLE(A->data[0][0],result->data[0][0]);
     TEST_ASSERT_EQUAL_DOUBLE(A->data[0][1],result->data[0][1]);
@@ -1002,8 +1044,11 @@ void test_transpose_sum(void){
         }
     }
 
-    matrix *result1  = transpose(mat_add(A,B));
-    matrix *result2 = mat_add(transpose(A),transpose(B));
+    matrix *temp1 = mat_add(A,B);
+    matrix *temp2 = transpose(A);
+    matrix *temp3 = transpose(B);
+    matrix *result1  = transpose(temp1);
+    matrix *result2 = mat_add(temp2,temp3);
     TEST_ASSERT_NOT_NULL(result1);
     TEST_ASSERT_NOT_NULL(result2);
     TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][0],result2->data[0][0]);
@@ -1013,6 +1058,9 @@ void test_transpose_sum(void){
 
     free_matrix(&A);
     free_matrix(&B);
+    free_matrix(&temp1);
+    free_matrix(&temp2);
+    free_matrix(&temp3);
     free_matrix(&result1);
     free_matrix(&result2);
 }
@@ -1034,8 +1082,11 @@ void test_transpose_product(void){
         }
     }
 
-    matrix *result1  = transpose(mat_multiply(A,B));
-    matrix *result2 = mat_multiply(transpose(B),transpose(A));
+    matrix *temp1 = mat_multiply(A,B);
+    matrix *temp2 = transpose(B);
+    matrix *temp3 = transpose(A);
+    matrix *result1  = transpose(temp1);
+    matrix *result2 = mat_multiply(temp2,temp3);
     TEST_ASSERT_NOT_NULL(result1);
     TEST_ASSERT_NOT_NULL(result2);
     TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][0],result2->data[0][0]);
@@ -1045,6 +1096,9 @@ void test_transpose_product(void){
 
     free_matrix(&A);
     free_matrix(&B);
+    free_matrix(&temp1);
+    free_matrix(&temp2);
+    free_matrix(&temp3);
     free_matrix(&result1);
     free_matrix(&result2);
 }
@@ -1064,8 +1118,10 @@ void test_scalar_transpose(void){
         }
     }
 
-    matrix *result1 = transpose(scalar_multiply(A,r));
-    matrix *result2 = scalar_multiply(transpose(A),r);
+    matrix *temp1 = scalar_multiply(A,r);
+    matrix *temp2 = transpose(A);
+    matrix *result1 = transpose(temp1);
+    matrix *result2 = scalar_multiply(temp2,r);
     TEST_ASSERT_NOT_NULL(result1);
     TEST_ASSERT_NOT_NULL(result2);
     TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][0],result2->data[0][0]);
