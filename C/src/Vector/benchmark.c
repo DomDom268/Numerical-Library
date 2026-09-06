@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
-#include "benchmark.h"
+#include "Vector/benchmark.h"
 #include "Vector/vector.h"
 
 /*functiont that returns benchmark results for create_v*/
