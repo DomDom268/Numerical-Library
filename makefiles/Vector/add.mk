@@ -2,7 +2,7 @@ ADD_CC = gcc
 
 ADD_CFLAGS = -IC/INCLUDE 
 
-ADD_SRC = C/src/vector.c C/src/benchmark.c
+ADD_SRC = C/src/Vector/vector.c C/src/Vector/benchmark.c
 
 ADD_TEST_SRC = C/tests/vector_test/benchmarks/add_bench.c
 

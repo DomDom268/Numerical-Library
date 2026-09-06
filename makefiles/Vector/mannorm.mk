@@ -2,7 +2,7 @@ MANHATTAN_NORM_CC = gcc
 
 MANHATTAN_NORM_CFLAGS = -IC/INCLUDE 
 
-MANHATTAN_NORM_SRC = C/src/vector.c C/src/benchmark.c
+MANHATTAN_NORM_SRC = C/src/Vector/vector.c C/src/Vector/benchmark.c
 
 MANHATTAN_NORM_TEST_SRC = C/tests/vector_test/benchmarks/mannorm_bench.c
 

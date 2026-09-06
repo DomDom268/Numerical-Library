@@ -2,7 +2,7 @@ CB_CC = gcc
 
 CB_CFLAGS = -IC/INCLUDE
 
-CB_SRC = C/src/vector.c C/src/benchmark.c 
+CB_SRC = C/src/Vector/vector.c C/src/Vector/benchmark.c 
 
 CB_TEST_SRC = C/tests/vector_test/benchmarks/create_bench.c 
 

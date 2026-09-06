@@ -2,7 +2,7 @@ EDGE_CC = gcc
 
 EDGE_CFLAGS = -IC/INCLUDE -IC/Unity/src -DUNITY_INCLUDE_DOUBLE
 
-EDGE_SRC = C/src/vector.c C/Unity/src/unity.c
+EDGE_SRC = C/src/Vector/vector.c C/Unity/src/unity.c
 
 EDGE_TEST_SRC = C/tests/vector_test/edge/test_edge.c C/tests/vector_test/edge/test_edge_runner.c
 

@@ -2,7 +2,7 @@ EUCLIDEAN_NORM_CC = gcc
 
 EUCLIDEAN_NORM_CFLAGS = -IC/INCLUDE 
 
-EUCLIDEAN_NORM_SRC = C/src/vector.c C/src/benchmark.c
+EUCLIDEAN_NORM_SRC = C/src/Vector/vector.c C/src/Vector/benchmark.c
 
 EUCLIDEAN_NORM_TEST_SRC = C/tests/vector_test/benchmarks/eucnorm_bench.c
 

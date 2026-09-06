@@ -2,7 +2,7 @@ SVB_CC = gcc
 
 SVB_CFLAGS = -IC/INCLUDE
 
-SVB_SRC = C/src/vector.c C/src/benchmark.c 
+SVB_SRC = C/src/Vector/vector.c C/src/Vector/benchmark.c 
 
 SVB_TEST_SRC = C/tests/vector_test/benchmarks/setval_bench.c 
 

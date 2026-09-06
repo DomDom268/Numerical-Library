@@ -2,7 +2,7 @@ MATH_CC = gcc
 
 MATH_CFLAGS = -IC/INCLUDE -IC/Unity/src -DUNITY_INCLUDE_DOUBLE
 
-MATH_SRC = C/src/vector.c C/Unity/src/unity.c
+MATH_SRC = C/src/Vector/vector.c C/Unity/src/unity.c
 
 MATH_TEST_SRC = C/tests/vector_test/mathematical/test_math.c C/tests/vector_test/mathematical/test_math_runner.c
 

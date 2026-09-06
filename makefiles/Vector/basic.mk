@@ -2,7 +2,7 @@ BASIC_CC = gcc
 
 BASIC_CFLAGS = -IC/INCLUDE -IC/Unity/src -DUNITY_INCLUDE_DOUBLE
 
-BASIC_SRC = C/src/vector.c C/Unity/src/unity.c
+BASIC_SRC = C/src/Vector/vector.c C/Unity/src/unity.c
 
 BASIC_TEST_SRC = C/tests/vector_test/basic/test_basic.c C/tests/vector_test/basic/test_basic_runner.c
 

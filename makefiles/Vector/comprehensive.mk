@@ -2,7 +2,7 @@ COMP_CC = gcc
 
 COMP_CFLAGS = -IC/INCLUDE 
 
-COMP_SRC = C/src/vector.c C/src/benchmark.c
+COMP_SRC = C/src/Vecotr/vector.c C/src/Vector/benchmark.c
 
 COMP_TEST_SRC = C/tests/vector_test/benchmarks/comprehensive_bench.c
 

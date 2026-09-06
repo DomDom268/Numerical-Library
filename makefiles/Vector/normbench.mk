@@ -2,7 +2,7 @@ NORM_CC = gcc
 
 NORM_CFLAGS = -IC/INCLUDE 
 
-NORM_SRC = C/src/vector.c C/src/benchmark.c
+NORM_SRC = C/src/Vector/vector.c C/src/Vector/benchmark.c
 
 NORM_TEST_SRC = C/tests/vector_test/benchmarks/normdist_bench.c
 

@@ -4,9 +4,9 @@ CFLAGS = -IC/include -IC/Unity/src -DUNITY_INCLUDE_DOUBLE
 
 UBSAN_FLAGS = -g -fsanitize=undefined -fno-omit-frame-pointer
 
-SRC = C/src/vector.c C/Unity/src/unity.c C/src/benchmark.c
+SRC = C/src/Vector/vector.c C/Unity/src/unity.c C/src/Vector/benchmark.c
 
-BENCH_SRC = C/src/benchmark.c C/src/vector.c 
+BENCH_SRC = C/src/Vector/benchmark.c C/src/Vector/vector.c 
 
 #Test Suites
 BASIC_TESTS = C/tests/vector_test/basic/test_basic.c C/tests/vector_test/basic/test_basic_runner.c
