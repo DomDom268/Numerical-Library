@@ -4,7 +4,7 @@
 #include <float.h>
 #define UNITY_INCLUDE_DOUBLE
 #include "unity.h"
-#include "matrix.h"
+#include "Matrix/matrix.h"
 
 extern void test_create_invalid(void);
 extern void test_create_singular(void);

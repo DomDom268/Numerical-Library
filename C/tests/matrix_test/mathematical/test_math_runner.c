@@ -3,7 +3,7 @@
 #include <math.h>
 #define UNITY_INCLUDE_DOUBLE
 #include "unity.h"
-#include "matrix.h"
+#include "Matrix/matrix.h"
 
 extern void test_add_commuitative(void);
 extern void test_add_associative(void);

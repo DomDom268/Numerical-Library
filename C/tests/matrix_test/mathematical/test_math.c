@@ -3,7 +3,7 @@
 #include <math.h>
 #define UNITY_INCLUDE_DOUBLE
 #include "unity.h"
-#include "matrix.h"
+#include "Matrix/matrix.h"
 
 
 #pragma message("Compiling test_basic.c for matrices")
