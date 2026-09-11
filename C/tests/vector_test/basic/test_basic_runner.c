@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#define UNITY_INCLUDE_DOUBLE
+//#define UNITY_INCLUDE_DOUBLE
 #include "unity.h"
 #include "Vector/vector.h"
 

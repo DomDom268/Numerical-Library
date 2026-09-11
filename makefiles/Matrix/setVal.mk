@@ -1,6 +1,6 @@
 SET_GC = gcc
 
-SET_CFLAGS = IC/include/Matrix
+SET_CFLAGS = IC/include
 
 SET_SRC = C/src/Matrix/matrix.c C/src/Matrix/benchmark.c
 
