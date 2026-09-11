@@ -108,6 +108,10 @@ void write_csv(const char *fileName,const char *funcName,int trials,int rows,int
  */
 double random_double();
 
+/** @brief Function to record trial time
+ * @return trial time
+ */
+double trialTime(clock_t start,clock_t end);
 
 
 
