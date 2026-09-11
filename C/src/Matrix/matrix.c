@@ -3,12 +3,6 @@
 #include <stdlib.h>
 #include "Matrix/matrix.h"
 
-typedef struct {
-    int rows;
-    int cols;
-    double **data; //pointer to a 2D array
-} matrix;
-
 
 // function to create matrix with given dimensions by allocating memory for the row pointers and for each row
 matrix *create(int rows, int cols) {
