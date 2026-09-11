@@ -3,6 +3,7 @@
  * @brief This header file contains function declarations for benchmarking matrix module functions
  */
 
+ #include <time.h>
  #ifndef BENCHMARK_H
  #define BENCHMARK_H
 
