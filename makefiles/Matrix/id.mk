@@ -1,6 +1,6 @@
 ID_GC = gcc
 
-ID_CFLAGS = IC/include
+ID_CFLAGS = -IC/include
 
 ID_SRC = C/src/Matrix/matrix.c C/src/Matrix/benchmark.c
 

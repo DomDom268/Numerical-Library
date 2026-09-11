@@ -1,6 +1,6 @@
 SUB_GC = gcc
 
-SUB_CFLAGS = IC/include
+SUB_CFLAGS = -IC/include
 
 SUB_SRC = C/src/Matrix/matrix.c C/src/Matrix/benchmark.c
 

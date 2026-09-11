@@ -1,6 +1,6 @@
 ADD_GC = gcc
 
-ADD_CFLAGS = IC/include
+ADD_CFLAGS = -IC/include
 
 ADD_SRC = C/src/Matrix/matrix.c C/src/Matrix/benchmark.c
 

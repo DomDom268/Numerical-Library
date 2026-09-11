@@ -1,6 +1,6 @@
 MUL_GC = gcc
 
-MUL_CFLAGS = IC/include
+MUL_CFLAGS = -IC/include
 
 MUL_SRC = C/src/Matrix/matrix.c C/src/Matrix/benchmark.c
 
