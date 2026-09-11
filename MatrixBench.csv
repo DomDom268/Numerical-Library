@@ -1,1 +1,2 @@
 function,trials,size,average,min,max
+mat_add,1000,0,0.000,0.000,0.000

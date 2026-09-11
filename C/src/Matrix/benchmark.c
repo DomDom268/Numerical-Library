@@ -61,8 +61,8 @@ BenchResults bench_set(int trials, int rows, int cols){
 
         clock_t start = clock();
 
-        for(int j=0;j<=rows;j++){
-            for(int k=0;k<=cols;k++){
+        for(int j=0;j<rows;j++){
+            for(int k=0;k<cols;k++){
                 setVal(m,j,k,random_double());
             }
         }
@@ -101,8 +101,8 @@ BenchResults bench_get(int trials, int rows, int cols){
     double max;
     matrix *m = create(rows,cols);
 
-    for(int j=0;j<=rows;j++){
-        for(int k=0;k<=cols;k++){
+    for(int j=0;j<rows;j++){
+        for(int k=0;k<cols;k++){
             setVal(m,j,k,random_double());
         }
     }
@@ -149,8 +149,8 @@ BenchResults bench_add(int trials, int rows, int cols){
     matrix *B = create(rows,cols);
     matrix *result = create(rows,cols);
 
-    for(int i=0;i<=rows;i++){
-        for(int j=0;j<=cols;j++){
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){
             setVal(A,i,j,random_double());
             setVal(B,i,j,random_double());
         }
@@ -199,8 +199,8 @@ BenchResults bench_sub(int trials, int rows, int cols){
     matrix *B = create(rows,cols);
     matrix *result = create(rows,cols);
 
-    for(int i=0;i<=rows;i++){
-        for(int j=0;j<=cols;j++){
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){
             setVal(A,i,j,random_double());
             setVal(B,i,j,random_double());
         }
@@ -249,8 +249,8 @@ BenchResults bench_scalar_multiply(int trials, int rows, int cols){
     double scalar = random_double();
     matrix *result = create(rows,cols);
 
-    for(int i=0;i<=rows;i++){
-        for(int j=0;j<=cols;j++){
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){
             setVal(A,i,j,random_double());
         }
     }
@@ -297,8 +297,8 @@ BenchResults bench_multiply(int trials, int rows, int cols){
     matrix *B = create(rows,cols);
     matrix *result = create(rows,cols);
 
-    for(int i=0;i<=rows;i++){
-        for(int j=0;j<=cols;j++){
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){
             setVal(A,i,j,random_double());
             setVal(B,i,j,random_double());
         }
@@ -347,8 +347,8 @@ BenchResults bench_elm_mul(int trials, int rows, int cols){
     matrix *B = create(rows,cols);
     matrix *result = create(rows,cols);
 
-    for(int i=0;i<=rows;i++){
-        for(int j=0;j<=cols;j++){
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){
             setVal(A,i,j,random_double());
             setVal(B,i,j,random_double());
         }
@@ -396,8 +396,8 @@ BenchResults bench_transpose(int trials, int rows, int cols){
     matrix *A = create(rows,cols);
     matrix *result = create(rows,cols);
 
-    for(int i=0;i<=rows;i++){
-        for(int j=0;j<=cols;j++){
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){
             setVal(A,i,j,random_double());
         }
     }
