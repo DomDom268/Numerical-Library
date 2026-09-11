@@ -481,7 +481,7 @@ void write_csv(const char *fileName, const char *funcName,int trials,int rows,in
         return;
     }
 
-    double size = rows*cols;
+    int size = rows*cols;
     fprintf(
         file,
         "%s,%d,%d,%.3f,%.3f,%.3f\n",
