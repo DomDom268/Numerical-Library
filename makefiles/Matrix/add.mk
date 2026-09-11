@@ -9,7 +9,7 @@ ADD_TEST_SRC = C/tests/matrix_test/benchmarks/add_bench.c
 ADD_TARGET = mat_add
 
 mat_add:
-	$(ADD_GCC) $(ADD_CFLAGS) $(ADD_SRC) $(ADD_TEST_SRC) -o $(ADD_TARGET)
+	$(ADD_GC) $(ADD_SRC) $(ADD_TEST_SRC) $(ADD_CFLAGS) -o $(ADD_TARGET)
 
 mat_add_run:
 	./$(ADD_TARGET)
