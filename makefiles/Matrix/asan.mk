@@ -60,7 +60,7 @@ asan_mat_tran:
 
 
 
-asan_bench:asan_mat_add asan_mat_sub asan_mat_setval asan_mat_getval asan_mat_create asan_mat_elm asan_mat_id asan_mat_mul asan_mat_scalar asan_mat_tran
+asan_mat_bench:asan_mat_add asan_mat_sub asan_mat_setval asan_mat_getval asan_mat_create asan_mat_elm asan_mat_id asan_mat_mul asan_mat_scalar asan_mat_tran
 	./asan_mat_add
 	./asan_mat_sub
 	./asan_mat_setval
@@ -72,7 +72,7 @@ asan_bench:asan_mat_add asan_mat_sub asan_mat_setval asan_mat_getval asan_mat_cr
 	./asan_mat_scalar
 	./asan_mat_tran
 	
-asan_all:asan_mat_basic asan_mat_edge asan_mat_math 
+asan_mat_all:asan_mat_basic asan_mat_edge asan_mat_math 
 	./asan_mat_basic
 	./asan_mat_edge
 	./asan_mat_math
