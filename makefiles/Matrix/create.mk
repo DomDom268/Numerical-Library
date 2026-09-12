@@ -1,6 +1,6 @@
 CREATE_GC = gcc
 
-CREAT_CFLAGS += -IC/INCLUDE/Matrix
+CREAT_CFLAGS += -IC/INCLUDE
 
 CREATE_SRC = C/src/Matrix/matrix.c C/src/Matrix/benchmark.c
 

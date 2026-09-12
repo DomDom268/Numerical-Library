@@ -1,6 +1,6 @@
 MMBASIC_CC = gcc
 
-MMBASIC_CFLAGS += -IC/include/Matrix -IC/Unity/src -DUNITY_INCLUDE_DOUBLE
+MMBASIC_CFLAGS += -IC/include -IC/Unity/src -DUNITY_INCLUDE_DOUBLE
 
 MMBASIC_SRC = C/src/Matrix/matrix.c C/Unity/src/unity.c
 
