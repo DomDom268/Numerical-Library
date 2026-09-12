@@ -1,6 +1,6 @@
 MEDGE_CC = gcc
 
-MEDGE_CFLAGS += -IC/INCLUDE -IC/Unity/src -DUNITY_INCLUDE_DOUBLE
+MEDGE_CFLAGS += -IC/include -IC/Unity/src -DUNITY_INCLUDE_DOUBLE
 
 MEDGE_SRC = C/src/Matrix/matrix.c C/Unity/src/unity.c
 

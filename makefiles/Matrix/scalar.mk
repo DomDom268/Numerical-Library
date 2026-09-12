@@ -1,6 +1,6 @@
 SCALAR_GC = gcc
 
-SCALAR_CFLAGS += -IC/INCLUDE
+SCALAR_CFLAGS += -IC/include
 
 SCALAR_SRC = C/src/Matrix/matrix.c C/src/Matrix/benchmark.c
 

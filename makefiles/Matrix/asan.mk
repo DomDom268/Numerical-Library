@@ -1,6 +1,6 @@
 CC = gcc
 
-CFLAGS += -IC/INCLUDE -IC/Unity/src -DUNITY_INCLUDE_DOUBLE
+CFLAGS += -IC/include -IC/Unity/src -DUNITY_INCLUDE_DOUBLE
 
 ASAN_FLAGS = -g -fsanitize=address -fno-omit-frame-pointer
 
