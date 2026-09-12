@@ -1,6 +1,6 @@
 ADD_CC = gcc
 
-ADD_CFLAGS = -IC/INCLUDE
+ADD_CFLAGS = -IC/include
 
 ADD_SRC = C/src/Vector/vector.c C/src/Vector/benchmark.c
 

@@ -1,6 +1,6 @@
 CB_CC = gcc
 
-CB_CFLAGS = -IC/INCLUDE
+CB_CFLAGS = -IC/include
 
 CB_SRC = C/src/Vector/vector.c C/src/Vector/benchmark.c 
 

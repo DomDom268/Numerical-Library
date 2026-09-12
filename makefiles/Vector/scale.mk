@@ -1,6 +1,6 @@
 SCALE_CC = gcc
 
-SCALE_CFLAGS = -IC/INCLUDE 
+SCALE_CFLAGS = -IC/include 
 
 SCALE_SRC = C/src/Vector/vector.c C/src/Vector/benchmark.c
 

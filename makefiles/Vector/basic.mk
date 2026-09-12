@@ -1,6 +1,6 @@
 BASIC_CC = gcc
 
-BASIC_CFLAGS = -IC/INCLUDE -IC/Unity/src -DUNITY_INCLUDE_DOUBLE
+BASIC_CFLAGS = -IC/include -IC/Unity/src -DUNITY_INCLUDE_DOUBLE
 
 BASIC_SRC = C/src/Vector/vector.c C/Unity/src/unity.c
 

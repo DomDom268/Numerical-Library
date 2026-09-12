@@ -1,6 +1,6 @@
 DOT_CC = gcc
 
-DOT_CFLAGS = -IC/INCLUDE 
+DOT_CFLAGS = -IC/include 
 
 DOT_SRC = C/src/Vector/vector.c C/src/Vector/benchmark.c
 
