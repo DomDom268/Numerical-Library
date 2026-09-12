@@ -596,7 +596,7 @@ void test_hadamard_distributive(void){
     double B_val = 5;
     double C_val = 9;
     for(int i=0;i<A->rows;i++){
-        for(int j=0;j<B->rows;j++){
+        for(int j=0;j<A->rows;j++){
             setVal(A,i,j,A_val++);
             setVal(B,i,j,B_val++);
             setVal(C,i,j,C_val++);
