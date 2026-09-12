@@ -30,7 +30,7 @@ TRAN_BENCH_TESTS = C/tests/matrix_test/benchmarks/transpose_bench.c
 asan_mat_basic:
 	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(BASIC_TESTS) -o asan_mat_basic -lm
 
-asan_mat__edge:
+asan_mat_edge:
 	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(EDGE_TESTS) -o asan_mat_edge -lm
 
 asan_mat_math:
