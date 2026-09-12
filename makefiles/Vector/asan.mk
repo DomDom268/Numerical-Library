@@ -7,7 +7,7 @@ ASAN_FLAGS = -g -fsanitize=address -fno-omit-frame-pointer
 
 SRC = C/src/Vector/vector.c C/Unity/src/unity.c C/src/Vector/benchmark.c
 
-BENCH_SRC = C/src/Vector/benchmark.c C/src/Vecotr/vector.c 
+BENCH_SRC = C/src/Vector/benchmark.c C/src/Vector/vector.c 
 
 #Test Suites
 BASIC_TESTS = C/tests/vector_test/basic/test_basic.c C/tests/vector_test/basic/test_basic_runner.c
