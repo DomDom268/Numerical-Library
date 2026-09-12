@@ -607,7 +607,7 @@ void test_hadamard_distributive(void){
     matrix *temp2 = mat_elm_multiply(A,B);
     matrix *temp3 = mat_elm_multiply(A,C);
     matrix *result1 = mat_elm_multiply(A,temp1);
-    matrix *result2 = mat_add(temp2,temp2);
+    matrix *result2 = mat_add(temp2,temp3);
     TEST_ASSERT_NOT_NULL(result1);
     TEST_ASSERT_NOT_NULL(result2);
     TEST_ASSERT_EQUAL_DOUBLE(result1->data[0][0],result2->data[0][0]);
