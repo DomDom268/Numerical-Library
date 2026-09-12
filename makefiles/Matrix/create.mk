@@ -1,15 +1,15 @@
-CREATE_GC = gcc
+MCREATE_GC = gcc
 
-CREAT_CFLAGS += -IC/include
+MCREAT_CFLAGS += -IC/include
 
-CREATE_SRC = C/src/Matrix/matrix.c C/src/Matrix/benchmark.c
+MCREATE_SRC = C/src/Matrix/matrix.c C/src/Matrix/benchmark.c
 
-CREATE_TEST_SRC = C/tests/matrix_test/benchmarks/create_bench.c
+MCREATE_TEST_SRC = C/tests/matrix_test/benchmarks/create_bench.c
 
-CREATE_TARGET = mat_create
+MCREATE_TARGET = mat_create
 
 mat_create:
-	$(CREATE_GC) $(CREATE_CFLAGS) $(CREATE_SRC) $(CREATE_TEST_SRC) -o $(CREATE_TARGET)
+	$(MCREATE_GC) $(MCREATE_CFLAGS) $(MCREATE_SRC) $(MCREATE_TEST_SRC) -o $(MCREATE_TARGET)
 
 mat_create_run:
-	./$(CREATE_TARGET)
+	./$(MCREATE_TARGET)
