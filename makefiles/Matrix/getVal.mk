@@ -1,6 +1,6 @@
 GET_GC = gcc
 
-GET_CFLAGS = -IC/INCLUDE
+GET_CFLAGS = -IC/INCLUDE/Matrix
 
 GET_SRC = C/src/Matrix/matrix.c C/src/Matrix/benchmark.c
 

@@ -1,6 +1,6 @@
 ELM_GC = gcc
 
-ELM_CFLAGS = -IC/INCLUDE
+ELM_CFLAGS = -IC/INCLUDE/Matrix
 
 ELM_SRC = C/src/Matrix/matrix.c C/src/Matrix/benchmark.c
 
