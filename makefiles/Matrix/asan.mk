@@ -4,58 +4,58 @@ CFLAGS += -IC/include -IC/Unity/src -DUNITY_INCLUDE_DOUBLE
 
 ASAN_FLAGS = -g -fsanitize=address -fno-omit-frame-pointer
 
-SRC = C/src/Matrix/matrix.c C/Unity/src/unity.c C/src/Matrix/benchmark.c
+MSRC = C/src/Matrix/matrix.c C/Unity/src/unity.c C/src/Matrix/benchmark.c
 
-BENCH_SRC = C/src/Matrix/benchmark.c C/src/Matrix/matrix.c 
+MBENCH_SRC = C/src/Matrix/benchmark.c C/src/Matrix/matrix.c 
 
 #Test Suites
-BASIC_TESTS = C/tests/matrix_test/basic/test_basic.c C/tests/matrix_test/basic/test_basic_runner.c
+MBASIC_TESTS = C/tests/matrix_test/basic/test_basic.c C/tests/matrix_test/basic/test_basic_runner.c
 
-EDGE_TESTS = C/tests/matrix_test/edge/test_edge.c C/tests/matrix_test/edge/test_edge_runner.c
+MEDGE_TESTS = C/tests/matrix_test/edge/test_edge.c C/tests/matrix_test/edge/test_edge_runner.c
 
-MATH_TESTS = C/tests/matrix_test/mathematical/test_math.c C/tests/matrix_test/mathematical/test_math_runner.c
+MMATH_TESTS = C/tests/matrix_test/mathematical/test_math.c C/tests/matrix_test/mathematical/test_math_runner.c
 
-ADD_BENCH_TESTS = C/tests/matrix_test/benchmarks/add_bench.c
-SUB_BENCH_TESTS = C/tests/matrix_test/benchmarks/sub_bench.c
-SETVAL_BENCH_TESTS = C/tests/matrix_test/benchmarks/set_bench.c
-GETVAL_BENCH_TESTS = C/tests/matrix_test/benchmarks/getVal_bench.c
-CREATE_BENCH_TESTS = C/tests/matrix_test/benchmarks/create_bench.c
-ELM_MUL_BENCH_TESTS = C/tests/matrix_test/benchmarks/elm_multiply_bench.c
-ID_BENCH_TESTS = C/tests/matrix_test/benchmarks/id_bench.c
-MUL_BENCH_TESTS = C/tests/matrix_test/benchmarks/multiply_bench.c
-SCALAR_BENCH_TESTS = C/tests/matrix_tests/benchmarks/scalar_multiply_bench.c
-TRAN_BENCH_TESTS = C/tests/matrix_test/benchmarks/transpose_bench.c
+MADD_BENCH_TESTS = C/tests/matrix_test/benchmarks/add_bench.c
+MSUB_BENCH_TESTS = C/tests/matrix_test/benchmarks/sub_bench.c
+MSETVAL_BENCH_TESTS = C/tests/matrix_test/benchmarks/set_bench.c
+MGETVAL_BENCH_TESTS = C/tests/matrix_test/benchmarks/getVal_bench.c
+MCREATE_BENCH_TESTS = C/tests/matrix_test/benchmarks/create_bench.c
+MELM_MUL_BENCH_TESTS = C/tests/matrix_test/benchmarks/elm_multiply_bench.c
+MID_BENCH_TESTS = C/tests/matrix_test/benchmarks/id_bench.c
+MMUL_BENCH_TESTS = C/tests/matrix_test/benchmarks/multiply_bench.c
+MSCALAR_BENCH_TESTS = C/tests/matrix_tests/benchmarks/scalar_multiply_bench.c
+MTRAN_BENCH_TESTS = C/tests/matrix_test/benchmarks/transpose_bench.c
 
 #Build each test suite with ASAN enabled
 asan_mat_basic:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(BASIC_TESTS) -o asan_mat_basic -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MSRC) $(MBASIC_TESTS) -o asan_mat_basic -lm
 
 asan_mat_edge:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(EDGE_TESTS) -o asan_mat_edge -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MSRC) $(MEDGE_TESTS) -o asan_mat_edge -lm
 
 asan_mat_math:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(SRC) $(MATH_TESTS) -o asan_mat_math -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MSRC) $(MMATH_TESTS) -o asan_mat_math -lm
 
 asan_mat_add:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(BENCH_SRC) $(ADD_BENCH_TESTS) -o asan_mat_add -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MBENCH_SRC) $(MADD_BENCH_TESTS) -o asan_mat_add -lm
 asan_mat_sub:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(BENCH_SRC) $(SUB_BENCH_TESTS) -o asan_mat_sub -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MBENCH_SRC) $(MSUB_BENCH_TESTS) -o asan_mat_sub -lm
 asan_mat_setval:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(BENCH_SRC) $(SETVAL_BENCH_TESTS) -o asan_mat_setval -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MBENCH_SRC) $(MSETVAL_BENCH_TESTS) -o asan_mat_setval -lm
 asan_mat_getval:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(BENCH_SRC) $(GETVAL_BENCH_TESTS) -o asan_mat_getval -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MBENCH_SRC) $(MGETVAL_BENCH_TESTS) -o asan_mat_getval -lm
 asan_mat_create:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(BENCH_SRC) $(CREATE_BENCH_TESTS) -o asan_mat_create -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MBENCH_SRC) $(MCREATE_BENCH_TESTS) -o asan_mat_create -lm
 asan_mat_elm:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(BENCH_SRC) $(ELM_MUL_BENCH_TESTS) -o asan_mat_elm -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MBENCH_SRC) $(MELM_MUL_BENCH_TESTS) -o asan_mat_elm -lm
 asan_mat_id:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(BENCH_SRC) $(ID_BENCH_TESTS) -o asan_mat_id -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MBENCH_SRC) $(MID_BENCH_TESTS) -o asan_mat_id -lm
 asan_mat_mul:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(BENCH_SRC) $(MUL_BENCH_TESTS) -o asan_mat_mul -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MBENCH_SRC) $(MMUL_BENCH_TESTS) -o asan_mat_mul -lm
 asan_mat_scalar:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(BENCH_SRC) $(SCALAR_BENCH_TESTS) -o asan_mat_scalar -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MBENCH_SRC) $(MSCALAR_BENCH_TESTS) -o asan_mat_scalar -lm
 asan_mat_tran:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(BENCH_SRC) $(TRAN_BENCH_TESTS) -o asan_mat_tran -lm
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MBENCH_SRC) $(MTRAN_BENCH_TESTS) -o asan_mat_tran -lm
 
 
 

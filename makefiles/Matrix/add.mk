@@ -1,15 +1,15 @@
-ADD_GC = gcc
+MADD_GC = gcc
 
-ADD_CFLAGS += -IC/include
+MADD_CFLAGS += -IC/include
 
-ADD_SRC = C/src/Matrix/matrix.c C/src/Matrix/benchmark.c
+MADD_SRC = C/src/Matrix/matrix.c C/src/Matrix/benchmark.c
 
-ADD_TEST_SRC = C/tests/matrix_test/benchmarks/add_bench.c
+MADD_TEST_SRC = C/tests/matrix_test/benchmarks/add_bench.c
 
-ADD_TARGET = mat_add
+MADD_TARGET = mat_add
 
 mat_add:
-	$(ADD_GC) $(ADD_CFLAGS) $(ADD_SRC) $(ADD_TEST_SRC) -o $(ADD_TARGET)
+	$(MADD_GC) $(MADD_CFLAGS) $(MADD_SRC) $(MADD_TEST_SRC) -o $(MADD_TARGET)
 
 mat_add_run:
-	./$(ADD_TARGET)
+	./$(MADD_TARGET)
