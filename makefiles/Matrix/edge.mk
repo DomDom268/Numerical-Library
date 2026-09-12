@@ -9,7 +9,7 @@ MEDGE_TEST_SRC = C/tests/matrix_test/edge/test_edge.c C/tests/matrix_test/edge/t
 MEDGE_TARGET = matrix_edge
 
 mat_edge:
-	$(MEDGE_CC) $(MEDGE_SRC) $(MEDGE_TEST_SRC) $(MEDGE_CFLAGS) -o $(MEDGE_TARGET)
+	$(MEDGE_CC) $(MEDGE_CFLAGS) $(MEDGE_SRC) $(MEDGE_TEST_SRC) -o $(MEDGE_TARGET)
 
 
 mat_edge_run:

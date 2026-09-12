@@ -9,7 +9,7 @@ ELM_TEST_SRC = C/tests/matrix_test/benchmarks/elm_multiply_bench.c
 ELM_TARGET = mat_elm
 
 mat_elm:
-	$(ELM_GC) $(ELM_SRC) $(ELM_TEST_SRC) $(ELM_CFLAGS) -o $(ELM_TARGET)
+	$(ELM_GC) $(ELM_CFLAGS) $(ELM_SRC) $(ELM_TEST_SRC) -o $(ELM_TARGET)
 
 mat_elm_run:
 	./$(ELM_TARGET)

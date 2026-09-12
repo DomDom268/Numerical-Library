@@ -9,7 +9,7 @@ MMBASIC_TEST_SRC = C/tests/matrix_test/mathematical/test_math.c C/tests/matrix_t
 MMBASIC_TARGET = mat_math
 
 mat_math: 
-	$(MMBASIC_CC) $(MMBASIC_SRC) $(MMBASIC_TEST_SRC) $(MMBASIC_CFLAGS) -o $(MMBASIC_TARGET)
+	$(MMBASIC_CC) $(MMBASIC_CFLAGS) $(MMBASIC_SRC) $(MMBASIC_TEST_SRC) -o $(MMBASIC_TARGET)
 
 mat_math_run:
 	./$(MMBASIC_TARGET)
