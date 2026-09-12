@@ -1024,6 +1024,7 @@ void test_transpose_double(void){
     TEST_ASSERT_EQUAL_DOUBLE(A->data[2][2],result->data[2][2]);
 
     free_matrix(&A);
+    free_matrix(&temp1);
     free_matrix(&result);
 }
 
@@ -1135,6 +1136,8 @@ void test_scalar_transpose(void){
     TEST_ASSERT_EQUAL_DOUBLE(result1->data[2][2],result2->data[2][2]);  
 
     free_matrix(&A);
+    free_matrix(&temp1);
+    free_matrix(&temp2);
     free_matrix(&result1);
     free_matrix(&result2);
 }
