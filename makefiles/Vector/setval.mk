@@ -1,6 +1,6 @@
 SVB_CC = gcc
 
-SVB_CFLAGS = -IC/include
+SVB_CFLAGS += -IC/include
 
 SVB_SRC = C/src/Vector/vector.c C/src/Vector/benchmark.c 
 

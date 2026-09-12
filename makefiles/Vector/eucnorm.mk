@@ -1,6 +1,6 @@
 EUCLIDEAN_NORM_CC = gcc
 
-EUCLIDEAN_NORM_CFLAGS = -IC/include 
+EUCLIDEAN_NORM_CFLAGS += -IC/include 
 
 EUCLIDEAN_NORM_SRC = C/src/Vector/vector.c C/src/Vector/benchmark.c
 

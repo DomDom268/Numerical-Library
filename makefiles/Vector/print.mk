@@ -1,6 +1,6 @@
 PRINT_CC = gcc
 
-PRINT_CFLAGS = -IC/include 
+PRINT_CFLAGS += -IC/include 
 
 PRINT_SRC = C/src/Vector/vector.c C/src/Vector/benchmark.c
 

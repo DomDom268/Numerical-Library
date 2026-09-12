@@ -1,6 +1,6 @@
 COMP_CC = gcc
 
-COMP_CFLAGS = -IC/include 
+COMP_CFLAGS += -IC/include 
 
 COMP_SRC = C/src/Vecotr/vector.c C/src/Vector/benchmark.c
 

@@ -1,6 +1,6 @@
 SUB_CC = gcc
 
-SUB_CFLAGS = -IC/include 
+SUB_CFLAGS += -IC/include 
 
 SUB_SRC = C/src/Vector/vector.c C/src/Vector/benchmark.c
 

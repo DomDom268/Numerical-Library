@@ -1,6 +1,6 @@
 CC = gcc
 
-CFLAGS = -IC/include -IC/Unity/src -DUNITY_INCLUDE_DOUBLE
+CFLAGS += -IC/include -IC/Unity/src -DUNITY_INCLUDE_DOUBLE
 
 UBSAN_FLAGS = -g -fsanitize=undefined -fno-omit-frame-pointer
 

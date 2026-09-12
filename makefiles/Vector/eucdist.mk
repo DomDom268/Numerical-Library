@@ -1,6 +1,6 @@
 EUCLIDEANDISTANCE_CC = gcc
 
-EUCLIDEANDISTANCE_CFLAGS = -IC/include 
+EUCLIDEANDISTANCE_CFLAGS += -IC/include 
 
 EUCLIDEANDISTANCE_SRC = C/src/Vecotr/vector.c C/src/Vector/benchmark.c
 

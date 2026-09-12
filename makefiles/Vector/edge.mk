@@ -1,6 +1,6 @@
 EDGE_CC = gcc
 
-EDGE_CFLAGS = -IC/include -IC/Unity/src -DUNITY_INCLUDE_DOUBLE
+EDGE_CFLAGS += -IC/include -IC/Unity/src -DUNITY_INCLUDE_DOUBLE
 
 EDGE_SRC = C/src/Vector/vector.c C/Unity/src/unity.c
 

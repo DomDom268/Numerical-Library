@@ -1,6 +1,6 @@
 MANHATTAN_NORM_CC = gcc
 
-MANHATTAN_NORM_CFLAGS = -IC/incldue 
+MANHATTAN_NORM_CFLAGS += -IC/incldue 
 
 MANHATTAN_NORM_SRC = C/src/Vector/vector.c C/src/Vector/benchmark.c
 

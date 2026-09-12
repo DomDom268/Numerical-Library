@@ -1,6 +1,6 @@
 NORM_CC = gcc
 
-NORM_CFLAGS = -IC/include 
+NORM_CFLAGS += -IC/include 
 
 NORM_SRC = C/src/Vector/vector.c C/src/Vector/benchmark.c
 
