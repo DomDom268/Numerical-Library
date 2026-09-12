@@ -1,6 +1,6 @@
 TRAN_GC = gcc
 
-TRAN_CFLAGS = -IC/INCLUDE/Matrix
+TRAN_CFLAGS += -IC/INCLUDE/Matrix
 
 TRAN_SRC = C/src/Matrix/matrix.c C/src/Matrix/benchmark.c
 

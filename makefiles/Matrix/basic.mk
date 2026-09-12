@@ -1,6 +1,6 @@
 MBASIC_CC = gcc
 
-MBASIC_CFLAGS = -IC/include/Matrix -IC/Unity/src -DUNITY_INCLUDE_DOUBLE
+MBASIC_CFLAGS += -IC/include/Matrix -IC/Unity/src -DUNITY_INCLUDE_DOUBLE
 
 MBASIC_SRC = C/src/Matrix/matrix.c C/Unity/src/unity.c
 
