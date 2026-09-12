@@ -9,7 +9,7 @@ PRINT_TEST_SRC = C/tests/vector_test/benchmarks/print_bench.c
 PRINT_TARGET = print
 
 print:
-	$(PRINT_CC) $(PRINT_SRC) $(PRINT_TEST_SRC) $(PRINT_CFLAGS) -o $(PRINT_TARGET)
+	$(PRINT_CC) $(PRINT_CFLAGS) $(PRINT_SRC) $(PRINT_TEST_SRC) -o $(PRINT_TARGET)
 
 
 print_run:

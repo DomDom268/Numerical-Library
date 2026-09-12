@@ -9,7 +9,7 @@ MATH_TEST_SRC = C/tests/vector_test/mathematical/test_math.c C/tests/vector_test
 MATH_TARGET = math
 
 math:
-	$(MATH_CC) $(MATH_SRC) $(MATH_TEST_SRC) $(MATH_CFLAGS) -o $(MATH_TARGET)
+	$(MATH_CC) $(MATH_CFLAGS) $(MATH_SRC) $(MATH_TEST_SRC) -o $(MATH_TARGET)
 
 
 math_run:

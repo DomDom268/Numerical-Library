@@ -9,7 +9,7 @@ NORM_TEST_SRC = C/tests/vector_test/benchmarks/normdist_bench.c
 NORM_TARGET = norm
 
 norm:
-	$(NORM_CC) $(NORM_SRC) $(NORM_TEST_SRC) $(NORM_CFLAGS) -o $(NORM_TARGET)
+	$(NORM_CC) $(NORM_CFLAGS) $(NORM_SRC) $(NORM_TEST_SRC) -o $(NORM_TARGET)
 
 
 norm_run:

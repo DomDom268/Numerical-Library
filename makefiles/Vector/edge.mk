@@ -9,7 +9,7 @@ EDGE_TEST_SRC = C/tests/vector_test/edge/test_edge.c C/tests/vector_test/edge/te
 EDGE_TARGET = edge
 
 edge:
-	$(EDGE_CC) $(EDGE_SRC) $(EDGE_TEST_SRC) $(EDGE_CFLAGS) -o $(EDGE_TARGET)
+	$(EDGE_CC) $(EDGE_CFLAGS) $(EDGE_SRC) $(EDGE_TEST_SRC) -o $(EDGE_TARGET)
 
 
 edge_run:
