@@ -2,7 +2,7 @@ CC = gcc
 
 CFLAGS += -IC/include -IC/Unity/src -DUNITY_INCLUDE_DOUBLE
 
-ASAN_FLAGS = -g -fsanitize=address -fno-omit-frame-pointer
+UBSAN_FLAGS = -g -fsanitize=undefined -fno-omit-frame-pointer
 
 MSRC = C/src/Matrix/matrix.c C/Unity/src/unity.c C/src/Matrix/benchmark.c
 
@@ -27,52 +27,52 @@ MSCALAR_BENCH_TESTS = C/tests/matrix_tests/benchmarks/scalar_multiply_bench.c
 MTRAN_BENCH_TESTS = C/tests/matrix_test/benchmarks/transpose_bench.c
 
 #Build each test suite with ASAN enabled
-asan_mat_basic:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MSRC) $(MBASIC_TESTS) -o asan_mat_basic -lm
+ubsan_mat_basic:
+	$(CC) $(CFLAGS) $(UBSAN_FLAGS) $(MSRC) $(MBASIC_TESTS) -o ubsan_mat_basic -lm
 
-asan_mat_edge:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MSRC) $(MEDGE_TESTS) -o asan_mat_edge -lm
+ubsan_mat_edge:
+	$(CC) $(CFLAGS) $(UBSAN_FLAGS) $(MSRC) $(MEDGE_TESTS) -o ubsan_mat_edge -lm
 
-asan_mat_math:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MSRC) $(MMATH_TESTS) -o asan_mat_math -lm
+ubsan_mat_math:
+	$(CC) $(CFLAGS) $(UBSAN_FLAGS) $(MSRC) $(MMATH_TESTS) -o ubsan_mat_math -lm
 
-asan_mat_add:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MBENCH_SRC) $(MADD_BENCH_TESTS) -o asan_mat_add -lm
-asan_mat_sub:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MBENCH_SRC) $(MSUB_BENCH_TESTS) -o asan_mat_sub -lm
-asan_mat_setval:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MBENCH_SRC) $(MSETVAL_BENCH_TESTS) -o asan_mat_setval -lm
-asan_mat_getval:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MBENCH_SRC) $(MGETVAL_BENCH_TESTS) -o asan_mat_getval -lm
-asan_mat_create:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MBENCH_SRC) $(MCREATE_BENCH_TESTS) -o asan_mat_create -lm
-asan_mat_elm:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MBENCH_SRC) $(MELM_MUL_BENCH_TESTS) -o asan_mat_elm -lm
-asan_mat_id:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MBENCH_SRC) $(MID_BENCH_TESTS) -o asan_mat_id -lm
-asan_mat_mul:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MBENCH_SRC) $(MMUL_BENCH_TESTS) -o asan_mat_mul -lm
-asan_mat_scalar:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MBENCH_SRC) $(MSCALAR_BENCH_TESTS) -o asan_mat_scalar -lm
-asan_mat_tran:
-	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(MBENCH_SRC) $(MTRAN_BENCH_TESTS) -o asan_mat_tran -lm
-
-
+ubsan_mat_add:
+	$(CC) $(CFLAGS) $(UBSAN_FLAGS) $(MBENCH_SRC) $(MADD_BENCH_TESTS) -o ubsan_mat_add -lm
+ubsan_mat_sub:
+	$(CC) $(CFLAGS) $(UBSAN_FLAGS) $(MBENCH_SRC) $(MSUB_BENCH_TESTS) -o ubsan_mat_sub -lm
+ubsan_mat_setval:
+	$(CC) $(CFLAGS) $(UBSAN_FLAGS) $(MBENCH_SRC) $(MSETVAL_BENCH_TESTS) -o ubsan_mat_setval -lm
+ubsan_mat_getval:
+	$(CC) $(CFLAGS) $(UBSAN_FLAGS) $(MBENCH_SRC) $(MGETVAL_BENCH_TESTS) -o ubsan_mat_getval -lm
+ubsan_mat_create:
+	$(CC) $(CFLAGS) $(UBSAN_FLAGS) $(MBENCH_SRC) $(MCREATE_BENCH_TESTS) -o ubsan_mat_create -lm
+ubsan_mat_elm:
+	$(CC) $(CFLAGS) $(UBSAN_FLAGS) $(MBENCH_SRC) $(MELM_MUL_BENCH_TESTS) -o ubsan_mat_elm -lm
+ubsan_mat_id:
+	$(CC) $(CFLAGS) $(UBSAN_FLAGS) $(MBENCH_SRC) $(MID_BENCH_TESTS) -o ubsan_mat_id -lm
+ubsan_mat_mul:
+	$(CC) $(CFLAGS) $(UBSAN_FLAGS) $(MBENCH_SRC) $(MMUL_BENCH_TESTS) -o ubsan_mat_mul -lm
+ubsan_mat_scalar:
+	$(CC) $(CFLAGS) $(UBSAN_FLAGS) $(MBENCH_SRC) $(MSCALAR_BENCH_TESTS) -o ubsan_mat_scalar -lm
+ubsan_mat_tran:
+	$(CC) $(CFLAGS) $(UBSAN_FLAGS) $(MBENCH_SRC) $(MTRAN_BENCH_TESTS) -o ubsan_mat_tran -lm
 
 
-asan_mat_bench:asan_mat_add asan_mat_sub asan_mat_setval asan_mat_getval asan_mat_create asan_mat_elm asan_mat_id asan_mat_mul asan_mat_scalar asan_mat_tran
-	./asan_mat_add
-	./asan_mat_sub
-	./asan_mat_setval
-	./asan_mat_getval
-	./asan_mat_create
-	./asan_mat_elm
-	./asan_mat_id
-	./asan_mat_mul
-	./asan_mat_scalar
-	./asan_mat_tran
+
+
+ubsan_mat_bench:ubsan_mat_add ubsan_mat_sub ubsan_mat_setval ubsan_mat_getval ubsan_mat_create ubsan_mat_elm ubsan_mat_id ubsan_mat_mul ubsan_mat_scalar ubsan_mat_tran
+	./ubsan_mat_add
+	./ubsan_mat_sub
+	./ubsan_mat_setval
+	./ubsan_mat_getval
+	./ubsan_mat_create
+	./ubsan_mat_elm
+	./ubsan_mat_id
+	./ubsan_mat_mul
+	./ubsan_mat_scalar
+	./ubsan_mat_tran
 	
-asan_mat_all:asan_mat_basic asan_mat_edge asan_mat_math 
-	./asan_mat_basic
-	./asan_mat_edge
-	./asan_mat_math
+ubsan_mat_all:ubsan_mat_basic ubsan_mat_edge ubsan_mat_math 
+	./ubsan_mat_basic
+	./ubsan_mat_edge
+	./ubsan_mat_math
