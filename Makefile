@@ -29,6 +29,7 @@ include makefiles/Matrix/transpose.mk
 include makefiles/Vector/asan.mk
 include makefiles/Vector/ubsan.mk
 include makefiles/Matrix/asan.mk
+include makefiles/Matrix/ubsan.mk
 
 clean:
 	rm -f *.exe
