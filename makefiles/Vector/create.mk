@@ -9,7 +9,7 @@ CB_TEST_SRC = C/tests/vector_test/benchmarks/create_bench.c
 CB_TARGET = benchmarks
 
 create_bench:
-	$(CB_CC) $(CB_CFLAGS) $(CB_SRC) $(CB_TEST_SRC) -o $(CB_TARGET)
+	$(CB_CC) $(CB_CFLAGS) $(CB_SRC) $(CB_TEST_SRC) -o $(CB_TARGET) -lm
 
 
 create_run:

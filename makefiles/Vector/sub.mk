@@ -9,7 +9,7 @@ SUB_TEST_SRC = C/tests/vector_test/benchmarks/sub_bench.c
 SUB_TARGET = sub
 
 sub:
-	$(SUB_CC) $(SUB_CFLAGS) $(SUB_SRC) $(SUB_TEST_SRC) -o $(SUB_TARGET)
+	$(SUB_CC) $(SUB_CFLAGS) $(SUB_SRC) $(SUB_TEST_SRC) -o $(SUB_TARGET) -lm
 
 
 sub_run:

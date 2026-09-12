@@ -9,7 +9,7 @@ DOT_TEST_SRC = C/tests/vector_test/benchmarks/dot_bench.c
 DOT_TARGET = dot
 
 dot:
-	$(DOT_CC) $(DOT_CFLAGS) $(DOT_SRC) $(DOT_TEST_SRC) -o $(DOT_TARGET)
+	$(DOT_CC) $(DOT_CFLAGS) $(DOT_SRC) $(DOT_TEST_SRC) -o $(DOT_TARGET) -lm
 
 
 dot_run:

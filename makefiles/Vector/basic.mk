@@ -9,7 +9,7 @@ BASIC_TEST_SRC = C/tests/vector_test/basic/test_basic.c C/tests/vector_test/basi
 BASIC_TARGET = basic_test
 
 basic:
-	$(BASIC_CC) $(BASIC_CFLAGS) $(BASIC_SRC) $(BASIC_TEST_SRC) -o $(BASIC_TARGET)
+	$(BASIC_CC) $(BASIC_CFLAGS) $(BASIC_SRC) $(BASIC_TEST_SRC) -o $(BASIC_TARGET) -lm
 
 
 basic_run:

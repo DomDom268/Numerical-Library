@@ -9,7 +9,7 @@ COMP_TEST_SRC = C/tests/vector_test/benchmarks/comprehensive_bench.c
 COMP_TARGET = comprehensive
 
 comprehensive:
-	$(COMP_CC) $(COMP_CFLAGS) $(COMP_SRC) $(COMP_TEST_SRC) -o $(COMP_TARGET)
+	$(COMP_CC) $(COMP_CFLAGS) $(COMP_SRC) $(COMP_TEST_SRC) -o $(COMP_TARGET) -lm
 
 
 comp_run:
