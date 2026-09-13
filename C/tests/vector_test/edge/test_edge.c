@@ -272,5 +272,47 @@ void test_underflow(void){
     
 }
 
+/* Invalid index test for slice function
+*
+* Slice should return NULL when either start or end are invalid
+*
+*/
+void test_slice_invalid(void){
+    vector *v = create_v(5);
 
+    for(int i=0;i<5;i++){
+        setVal_v(v,i,i+1.0);
+    }
+
+    vector *slice1 = slice(v,-1,2);
+    vector *slice2 = slice(v,1,7);
+    vector *slice3 = slice(v,-1,5);
+
+    TEST_ASSERT_NULL(slice1);
+    TEST_ASSERT_NULL(slice2);
+    TEST_ASSERT_NULL(slice3);
+
+    free_v(&v);
+    free_v(&slice1);
+    free_v(&slice2);
+    free_v(&slice3);
+
+}
+
+/*Singular vector 
+*
+* Slice should return NULL when teh vector is singular
+*
+*/
+void test_slice_singular(void){
+    vector *v = create_v(1);
+    setVal_v(v,0,10.0);
+
+    vector *slice1 = slice(v,0,1);
+
+    TEST_ASSERT_NULL(slice1);
+
+    free_v(&v);
+    free_v(&slice1);
+}
 

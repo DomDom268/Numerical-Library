@@ -18,6 +18,7 @@ extern void test_euclidean_distance_basic(void);
 extern void test_euclidean_norm_basic(void);
 extern void test_manhattan_norm_basic(void);
 extern void test_normm_distance_basic(void);
+extern void test_slice_basic(void);
 
 int main(void){
     UNITY_BEGIN();
@@ -35,6 +36,7 @@ int main(void){
     RUN_TEST(test_euclidean_norm_basic);
     RUN_TEST(test_manhattan_norm_basic);
     RUN_TEST(test_normm_distance_basic);
+    RUN_TEST(test_slice_basic);
 
     return UNITY_END();
 }

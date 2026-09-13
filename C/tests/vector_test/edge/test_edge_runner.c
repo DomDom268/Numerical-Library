@@ -15,6 +15,8 @@ extern void test_infinity(void);
 extern void test_nan(void);
 extern void test_overflow(void);
 extern void test_underflow(void);
+extern void test_slice_invalid(void);
+extern void test_slice_singular(void);
 
 int main(void){
     UNITY_BEGIN();
@@ -28,6 +30,8 @@ int main(void){
     RUN_TEST(test_nan);
     RUN_TEST(test_overflow);
     RUN_TEST(test_underflow);
+    RUN_TEST(test_slice_invalid);
+    RUN_TEST(test_slice_singular);
 
     return UNITY_END();
 }

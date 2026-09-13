@@ -206,3 +206,30 @@ vector *ones(int size){
 
     return result;
 }
+
+vector *slice(vector *v,int start,int end){
+    if(!v) {
+        printf("Empty vector cannot be sliced");
+        return NULL;
+    } else if (v->rows ==1){
+        printf("Cannot slice singular vector");
+        return NULL;
+    } else if (start < 0 || end >= v->rows){
+        printf("Invalied slice indices");
+        return NULL;
+    }else if (start == 0 && end+1 == v->rows){
+        return v;
+    } else if (start == end){
+        vector *slice = create_v(1);
+        slice->data[0] = v->data[end];
+        return slice;
+    } else{
+        vector *slice = create_v(end+1);
+        int index = 0;
+        for(int i=start;i<=end;i++){
+            setVal_v(slice,index,v->data[start]);
+            index++;
+        }
+    }
+
+}

@@ -120,5 +120,14 @@ vector *zeros(int size);
  */
 vector *ones(int size);
 
+/**
+ * @brief Slices a vector and returns the slice as a new vector
+ * @param v Pointer to vector to be sliced
+ * @param start The position to start the slice (inclusive)
+ * @param end The position to end the slice (inclusive)
+ * @return A pointer to the slice
+ */
+vector *slice(vector *v,int start,int end);
+
 
 #endif // VECTOR_H
