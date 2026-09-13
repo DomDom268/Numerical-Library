@@ -224,12 +224,14 @@ vector *slice(vector *v,int start,int end){
         slice->data[0] = v->data[end];
         return slice;
     } else{
-        vector *slice = create_v(end+1);
+        vector *slice = create_v(end-start+1);
         int index = 0;
         for(int i=start;i<=end;i++){
-            setVal_v(slice,index,v->data[start]);
+            setVal_v(slice,index,v->data[i]);
             index++;
         }
+
+        return slice;
     }
 
 }
