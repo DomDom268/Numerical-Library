@@ -261,3 +261,20 @@ void test_mat_identity(void){
 
 
 }
+
+/*Basic correctness test for ones function*/
+void test_ones(void){
+
+    matrix *one = ones(2,3);
+
+    TEST_ASSERT_NOT_NULL(one);
+    TEST_ASSERT_EQUAL_DOUBLE(1.0,one->data[0][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(1.0,one->data[0][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(1.0,one->data[0][2]);
+    TEST_ASSERT_EQUAL_DOUBLE(1.0,one->data[1][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(1.0,one->data[1][1]);
+    TEST_ASSERT_EQUAL_DOUBLE(1.0,one->data[1][2]);
+
+    free_matrix(&one);
+
+}

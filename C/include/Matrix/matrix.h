@@ -21,6 +21,7 @@ matrix *mat_multiply(matrix *a, matrix *b);
 matrix *mat_elm_multiply(matrix *a, matrix *b);
 matrix *transpose(matrix *m);
 matrix *mat_identity(int size);
+matrix *ones(int rows,int cols);
 
 
 

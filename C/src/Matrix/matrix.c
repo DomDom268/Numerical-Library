@@ -213,3 +213,17 @@ matrix *mat_identity(int size){
     return result;
 }
 
+matrix *ones(int rows,int cols){
+    if(rows == 0 || cols == 0){
+        printf("Error:Rows and cols should be greater than 0");
+        return NULL;
+    } else{
+        matrix *one = create(rows,cols);
+        for(int i=0;i<rows;i++){
+            for(int j=0;j<cols;j++){
+                setVal(one,i,j,1.0);
+            }
+        }
+        return one;
+    }
+}

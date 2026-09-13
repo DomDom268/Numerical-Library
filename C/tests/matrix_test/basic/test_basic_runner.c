@@ -15,6 +15,7 @@ extern void test_mat_elm_multiply(void);
 extern void test_mat_multiply(void);
 extern void test_transpose_basic(void);
 extern void test_mat_identity(void);
+extern void test_ones(void);
 
 int main(void){
     UNITY_BEGIN();
@@ -29,6 +30,7 @@ int main(void){
     RUN_TEST(test_mat_multiply);
     RUN_TEST(test_transpose_basic);
     RUN_TEST(test_mat_identity);
+    RUN_TEST(test_ones);
     
     return UNITY_END();
 }
